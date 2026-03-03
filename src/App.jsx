@@ -51,7 +51,14 @@ const projects = [
 ]
 
 const certs = [
-  { title: 'Certificados próximamente', file: '/certificados/' },
+  { title: 'Certificado SENA - Construcción de Bases de Datos con MySQL', file: '/certificados/Certificado_SENA_Bases-de-Datos-MySQL.pdf' },
+  { title: 'Registro DNDA 145 - Software Autotrigger', file: '/certificados/DNDA-145_Software_Autotrigger_Registro.pdf' },
+  { title: 'Registro DNDA 146 - Software LaunchAssistPy', file: '/certificados/DNDA-146_Software_LaunchAssistPy_Registro.pdf' },
+  { title: 'Registro DNDA 172 - Software STIMO', file: '/certificados/DNDA-172_Software_STIMO_Registro.pdf' },
+  { title: 'Manual de Usuario - Autotrigger', file: '/certificados/Manual_Autotrigger.pdf' },
+  { title: 'Manual de Usuario - LaunchAssistPy', file: '/certificados/Manual_LaunchAssistPy.pdf' },
+  { title: 'Manual de Usuario - STIMO', file: '/certificados/Manual_STIMO.pdf' },
+  { title: 'CV - Mateo David Castro Villegas', file: '/certificados/CV_Mateo_David_Castro_Villegas.pdf' },
 ]
 
 function App() {
