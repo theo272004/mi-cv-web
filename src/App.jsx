@@ -110,6 +110,21 @@ function App() {
           </ul>
         </article>
       </section>
+
+      <section className="card">
+        <h2>Certificados (próximamente)</h2>
+        <p>
+          Aquí vamos a publicar tus certificados gratuitos con botón de descarga.
+          Ruta de carga: <code>public/certificados/</code>
+        </p>
+      </section>
+
+      <section className="card">
+        <h2>Plan 90 días</h2>
+        <p>
+          Ya quedó creado el roadmap inicial en <code>docs/ROADMAP.md</code> para escalar tu perfil y enfocarlo a contratación.
+        </p>
+      </section>
     </main>
   )
 }
