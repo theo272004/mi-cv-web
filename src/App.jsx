@@ -50,15 +50,18 @@ const projects = [
   },
 ]
 
-const certs = [
-  { title: 'Certificado SENA - Construcción de Bases de Datos con MySQL', file: '/certificados/Certificado_SENA_Bases-de-Datos-MySQL.pdf' },
-  { title: 'Registro DNDA 145 - Software Autotrigger', file: '/certificados/DNDA-145_Software_Autotrigger_Registro.pdf' },
-  { title: 'Registro DNDA 146 - Software LaunchAssistPy', file: '/certificados/DNDA-146_Software_LaunchAssistPy_Registro.pdf' },
-  { title: 'Registro DNDA 172 - Software STIMO', file: '/certificados/DNDA-172_Software_STIMO_Registro.pdf' },
+const featuredCredentials = [
+  { title: 'Registro DNDA 145 - Software Autotrigger', file: '/certificados/DNDA-145_Software_Autotrigger_Registro.pdf', type: 'DNDA' },
+  { title: 'Registro DNDA 146 - Software LaunchAssistPy', file: '/certificados/DNDA-146_Software_LaunchAssistPy_Registro.pdf', type: 'DNDA' },
+  { title: 'Registro DNDA 172 - Software STIMO', file: '/certificados/DNDA-172_Software_STIMO_Registro.pdf', type: 'DNDA' },
+  { title: 'Certificado SENA - Construcción de Bases de Datos con MySQL', file: '/certificados/Certificado_SENA_Bases-de-Datos-MySQL.pdf', type: 'MySQL' },
+]
+
+const downloadableResources = [
+  { title: 'CV - Mateo David Castro Villegas', file: '/certificados/CV_Mateo_David_Castro_Villegas.pdf' },
   { title: 'Manual de Usuario - Autotrigger', file: '/certificados/Manual_Autotrigger.pdf' },
   { title: 'Manual de Usuario - LaunchAssistPy', file: '/certificados/Manual_LaunchAssistPy.pdf' },
   { title: 'Manual de Usuario - STIMO', file: '/certificados/Manual_STIMO.pdf' },
-  { title: 'CV - Mateo David Castro Villegas', file: '/certificados/CV_Mateo_David_Castro_Villegas.pdf' },
 ]
 
 function App() {
@@ -78,22 +81,45 @@ function App() {
   return (
     <main className="wrap">
       <header className="hero card">
-        <h1>{profile.name}</h1>
-        <p className="role">{profile.role}</p>
-        <p>{profile.summary}</p>
-        <div className="meta">
-          <span>📍 {profile.city}</span>
-          <span>📧 {profile.email}</span>
-          <span>📱 {profile.phone}</span>
+        <div className="hero-content">
+          <span className="hero-eyebrow">Perfil profesional</span>
+          <h1>{profile.name}</h1>
+          <p className="role">{profile.role}</p>
+          <p className="hero-summary">{profile.summary}</p>
+
+          <div className="meta">
+            <span>📍 {profile.city}</span>
+            <span>📧 {profile.email}</span>
+            <span>📱 {profile.phone}</span>
+          </div>
+
+          <div className="hero-actions">
+            <a className="btn btn-primary" href="/certificados/CV_Mateo_David_Castro_Villegas.pdf" target="_blank" rel="noreferrer">
+              Descargar CV
+            </a>
+            <a className="btn btn-secondary" href={profile.linkedin} target="_blank" rel="noreferrer">
+              LinkedIn
+            </a>
+            <a className="btn btn-secondary" href={profile.github} target="_blank" rel="noreferrer">
+              GitHub
+            </a>
+          </div>
         </div>
-        <div className="socials">
-          <a className="social-btn" href={profile.linkedin} target="_blank" rel="noreferrer">
-            🔗 LinkedIn
-          </a>
-          <a className="social-btn" href={profile.github} target="_blank" rel="noreferrer">
-            🐙 GitHub
-          </a>
-        </div>
+
+        <aside className="hero-stats" aria-label="Indicadores de perfil">
+          <div className="stat-card">
+            <strong>3</strong>
+            <span>Registros de software DNDA</span>
+          </div>
+          <div className="stat-card">
+            <strong>1</strong>
+            <span>Certificación en MySQL (SENA)</span>
+          </div>
+          <div className="stat-card">
+            <strong>+12%</strong>
+            <span>Impacto estimado en disponibilidad</span>
+          </div>
+        </aside>
       </header>
 
       <section className="grid">
@@ -138,7 +164,7 @@ function App() {
                 <p><strong>Estado:</strong> {project.status}</p>
                 <small>{project.stack.join(' · ')}</small>
                 <p>
-                  <a href={project.evidence} target="_blank" rel="noreferrer">Ver evidencia técnica</a>
+                  <a className="evidence-link" href={project.evidence} target="_blank" rel="noreferrer">Ver evidencia técnica →</a>
                 </p>
               </li>
             ))}
@@ -148,11 +174,28 @@ function App() {
 
       <section className="card">
         <h2>Certificados y descargables</h2>
-        <ul className="project-list">
-          {certs.map((c) => (
-            <li key={c.title}>
-              <h3>{c.title}</h3>
-              <a href={c.file} target="_blank" rel="noreferrer">Abrir carpeta</a>
+        <p className="section-intro">Documentación clave para validación profesional y revisión técnica.</p>
+
+        <div className="credentials-grid">
+          {featuredCredentials.map((item) => (
+            <article key={item.title} className="credential-card">
+              <span className="credential-badge">{item.type}</span>
+              <h3>{item.title}</h3>
+              <a className="btn btn-secondary" href={item.file} target="_blank" rel="noreferrer">
+                Ver certificado
+              </a>
+            </article>
+          ))}
+        </div>
+
+        <h3 className="subsection-title">Descargables adicionales</h3>
+        <ul className="download-list">
+          {downloadableResources.map((resource) => (
+            <li key={resource.title}>
+              <span>{resource.title}</span>
+              <a className="download-link" href={resource.file} target="_blank" rel="noreferrer">
+                Descargar
+              </a>
             </li>
           ))}
         </ul>
