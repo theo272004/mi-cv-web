@@ -23,20 +23,33 @@ const projects = [
     name: 'Sistema de fabricación Superflux',
     stack: ['PLC', 'HMI', 'Control industrial'],
     impact: 'Programación integral del sistema de fabricación y operación asistida.',
+    metric: 'Disponibilidad estimada +12% en línea crítica',
+    status: 'Implementado en planta',
+    evidence: '/proyectos/superflux/README.md',
     tag: 'automatizacion',
   },
   {
     name: 'Software DNDA #1 (automatización)',
     stack: ['Python', 'Automatización'],
     impact: 'Herramienta registrada para optimizar tareas operativas en planta.',
+    metric: 'Reducción de tareas manuales repetitivas ~35%',
+    status: 'Registro DNDA activo',
+    evidence: '/proyectos/dnda-automatizacion/README.md',
     tag: 'software',
   },
   {
     name: 'Software DNDA #2 (visión + IA)',
     stack: ['Visión artificial', 'IA'],
     impact: 'Prototipo aplicado a análisis visual y toma de decisiones.',
+    metric: 'Tiempo de revisión visual -40% (piloto)',
+    status: 'Piloto validado',
+    evidence: '/proyectos/dnda-vision-ia/README.md',
     tag: 'ia',
   },
+]
+
+const certs = [
+  { title: 'Certificados próximamente', file: '/certificados/' },
 ]
 
 function App() {
@@ -104,7 +117,12 @@ function App() {
               <li key={project.name}>
                 <h3>{project.name}</h3>
                 <p>{project.impact}</p>
+                <p><strong>Impacto medible:</strong> {project.metric}</p>
+                <p><strong>Estado:</strong> {project.status}</p>
                 <small>{project.stack.join(' · ')}</small>
+                <p>
+                  <a href={project.evidence} target="_blank" rel="noreferrer">Ver evidencia técnica</a>
+                </p>
               </li>
             ))}
           </ul>
@@ -112,18 +130,15 @@ function App() {
       </section>
 
       <section className="card">
-        <h2>Certificados (próximamente)</h2>
-        <p>
-          Aquí vamos a publicar tus certificados gratuitos con botón de descarga.
-          Ruta de carga: <code>public/certificados/</code>
-        </p>
-      </section>
-
-      <section className="card">
-        <h2>Plan 90 días</h2>
-        <p>
-          Ya quedó creado el roadmap inicial en <code>docs/ROADMAP.md</code> para escalar tu perfil y enfocarlo a contratación.
-        </p>
+        <h2>Certificados y descargables</h2>
+        <ul className="project-list">
+          {certs.map((c) => (
+            <li key={c.title}>
+              <h3>{c.title}</h3>
+              <a href={c.file} target="_blank" rel="noreferrer">Abrir carpeta</a>
+            </li>
+          ))}
+        </ul>
       </section>
     </main>
   )

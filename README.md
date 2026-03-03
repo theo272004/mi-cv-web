@@ -1,16 +1,46 @@
-# React + Vite
+# Mi CV Web · Portafolio técnico de Mateo
 
-This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
+CV web interactivo orientado a oportunidades en **mecatrónica, automatización industrial e IA aplicada**.
 
-Currently, two official plugins are available:
+## Propuesta de valor
+Este proyecto funciona como hub profesional para mostrar:
+- Experiencia y enfoque en mantenimiento/automatización
+- Proyectos con evidencia técnica (capturas, stack y resultados)
+- Ruta de crecimiento en analítica, visión artificial y agentes IA
 
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react) uses [Babel](https://babeljs.io/) (or [oxc](https://oxc.rs) when used in [rolldown-vite](https://vite.dev/guide/rolldown)) for Fast Refresh
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react-swc) uses [SWC](https://swc.rs/) for Fast Refresh
+## Stack
+- React 19
+- Vite 7
+- ESLint 9
+- GitHub Actions + GitHub Pages (deploy automático)
 
-## React Compiler
+## Scripts
+```bash
+npm install
+npm run dev      # entorno local
+npm run build    # build de producción
+npm run preview  # previsualizar build
+npm run lint     # calidad estática
+```
 
-The React Compiler is not enabled on this template because of its impact on dev & build performances. To add it, see [this documentation](https://react.dev/learn/react-compiler/installation).
+## Deploy
+El despliegue se ejecuta con `.github/workflows/deploy-pages.yml` en cada push a `master`.
 
-## Expanding the ESLint configuration
+## Estructura clave
+- `src/` → UI y componentes del CV
+- `public/img/` → imágenes para perfil/proyectos
+- `public/proyectos/` → recursos de evidencia técnica
+- `docs/ROADMAP.md` → plan de escalamiento profesional (90 días)
 
-If you are developing a production application, we recommend using TypeScript with type-aware lint rules enabled. Check out the [TS template](https://github.com/vitejs/vite/tree/main/packages/create-vite/template-react-ts) for information on how to integrate TypeScript and [`typescript-eslint`](https://typescript-eslint.io) in your project.
+## Enfoque de contenido recomendado
+Cada proyecto del portafolio debería incluir:
+1. Problema industrial real
+2. Solución propuesta y arquitectura
+3. Métricas/resultado (tiempo, calidad, costo, disponibilidad)
+4. Evidencia visual + próximos pasos
+
+## Próximos bloques (priorizados)
+- Fichas de proyectos con KPIs de impacto
+- Sección de certificados con trazabilidad (fecha + enlace)
+- Integrar 2 repos demo: mantenimiento predictivo y visión artificial básica
+- Añadir versión EN para postulaciones internacionales
