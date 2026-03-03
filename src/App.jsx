@@ -7,6 +7,8 @@ const profile = {
   city: 'Barranquilla, Colombia',
   phone: '+57 302 413 7347',
   email: 'mateodcvnew@gmail.com',
+  linkedin: 'https://www.linkedin.com/in/mateo-castro-villegas-84b738340',
+  github: 'https://github.com/theo272004',
   summary:
     'Ingeniero Mecatrónico con experiencia en mantenimiento industrial, automatización de procesos y programación PLC/HMI. Enfocado en construir soluciones prácticas con software, visión artificial e inteligencia artificial para mejorar productividad y confiabilidad operacional.',
 }
@@ -76,6 +78,14 @@ function App() {
           <span>📍 {profile.city}</span>
           <span>📧 {profile.email}</span>
           <span>📱 {profile.phone}</span>
+        </div>
+        <div className="socials">
+          <a className="social-btn" href={profile.linkedin} target="_blank" rel="noreferrer">
+            🔗 LinkedIn
+          </a>
+          <a className="social-btn" href={profile.github} target="_blank" rel="noreferrer">
+            🐙 GitHub
+          </a>
         </div>
       </header>
 
