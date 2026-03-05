@@ -119,6 +119,20 @@ body {
 .hero-stats {
   display: grid;
   gap: 10px;
+  align-content: start;
+}
+
+.photo-placeholder {
+  width: 100%;
+  min-height: 96px;
+  border-radius: 14px;
+  display: grid;
+  place-items: center;
+  font-weight: 700;
+  letter-spacing: 0.04em;
+  color: #bfdbfe;
+  border: 1px dashed rgba(125, 211, 252, 0.55);
+  background: linear-gradient(135deg, rgba(14, 116, 144, 0.4), rgba(30, 64, 175, 0.3));
 }
 
 .stat-card {
@@ -227,6 +241,30 @@ select {
 .section-intro {
   margin-top: -6px;
   color: #94a3b8;
+}
+
+.repo-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(230px, 1fr));
+  gap: 12px;
+  margin-top: 12px;
+}
+
+.repo-card {
+  border: 1px solid rgba(103, 232, 249, 0.28);
+  background: rgba(8, 47, 73, 0.32);
+  border-radius: 14px;
+  padding: 14px;
+}
+
+.repo-card h3 {
+  margin: 0 0 10px;
+  font-size: 1rem;
+}
+
+.repo-card p {
+  margin: 0 0 8px;
+  color: #cbd5e1;
 }
 
 .credentials-grid {

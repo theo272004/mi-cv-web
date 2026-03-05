@@ -1,6 +1,8 @@
 import { useMemo, useState } from 'react'
 import './App.css'
 
+const assetUrl = (path) => new URL(path, import.meta.env.BASE_URL).toString()
+
 const profile = {
   name: 'Mateo David Castro Villegas',
   role: 'Ingeniero Mecatrónico | Automatización Industrial | IA aplicada',
@@ -15,7 +17,7 @@ const profile = {
 
 const skills = [
   { area: 'Automatización y Control', items: ['Programación PLC', 'Desarrollo HMI', 'Control de procesos industriales'] },
-  { area: 'Programación', items: ['Python', 'C++', 'React', 'SQL básico', 'MATLAB'] },
+  { area: 'Programación', items: ['Python', 'C++', 'React', 'SQL', 'MATLAB'] },
   { area: 'IA aplicada', items: ['LLMs', 'LangChain/LangGraph', 'Ollama', 'Open WebUI'] },
   { area: 'Ingeniería', items: ['Mantenimiento preventivo/correctivo', 'Diagnóstico técnico', 'SolidWorks'] },
 ]
@@ -27,7 +29,7 @@ const projects = [
     impact: 'Programación integral del sistema de fabricación y operación asistida.',
     metric: 'Disponibilidad estimada +12% en línea crítica',
     status: 'Implementado en planta',
-    evidence: '/proyectos/superflux/README.md',
+    evidence: assetUrl('proyectos/superflux/README.md'),
     tag: 'automatizacion',
   },
   {
@@ -36,7 +38,7 @@ const projects = [
     impact: 'Herramienta registrada para optimizar tareas operativas en planta.',
     metric: 'Reducción de tareas manuales repetitivas ~35%',
     status: 'Registro DNDA activo',
-    evidence: '/proyectos/dnda-automatizacion/README.md',
+    evidence: assetUrl('proyectos/dnda-automatizacion/README.md'),
     tag: 'software',
   },
   {
@@ -45,23 +47,68 @@ const projects = [
     impact: 'Prototipo aplicado a análisis visual y toma de decisiones.',
     metric: 'Tiempo de revisión visual -40% (piloto)',
     status: 'Piloto validado',
-    evidence: '/proyectos/dnda-vision-ia/README.md',
+    evidence: assetUrl('proyectos/dnda-vision-ia/README.md'),
     tag: 'ia',
+  },
+  {
+    name: 'SQL Maintenance Analytics',
+    stack: ['SQL', 'SQLite', 'CTE', 'Window Functions'],
+    impact: 'Mini data mart con KPIs de mantenimiento (MTTR, MTBF, SLA y scoring de riesgo).',
+    metric: '9 consultas KPI listas para demo técnica',
+    status: 'Repositorio técnico publicado',
+    evidence: 'https://github.com/theo272004/sql-maintenance-analytics',
+    tag: 'datos',
+  },
+  {
+    name: 'n8n Maintenance Orchestrator',
+    stack: ['n8n', 'Webhook', 'Automatización de flujo'],
+    impact: 'Orquestación de tickets de mantenimiento con priorización automática por severidad.',
+    metric: 'Respuesta operativa estructurada en un solo flujo',
+    status: 'Workflow funcional importable',
+    evidence: 'https://github.com/theo272004/n8n-maintenance-orchestrator',
+    tag: 'n8n',
+  },
+]
+
+const repoHighlights = [
+  {
+    name: 'sql-maintenance-analytics',
+    focus: 'Analítica SQL aplicada a mantenimiento',
+    value: 'Demuestra dominio de KPIs operativos y consultas de nivel medio para decisiones técnicas.',
+    link: 'https://github.com/theo272004/sql-maintenance-analytics',
+  },
+  {
+    name: 'n8n-maintenance-orchestrator',
+    focus: 'Automatización de atención de incidentes',
+    value: 'Convierte reportes de planta en prioridades y acciones claras con lógica reproducible.',
+    link: 'https://github.com/theo272004/n8n-maintenance-orchestrator',
+  },
+  {
+    name: 'predictive-maintenance-ai-starter',
+    focus: 'IA aplicada a mantenimiento predictivo',
+    value: 'Entrena un modelo base con datos sintéticos para anticipar riesgo de falla.',
+    link: 'https://github.com/theo272004/predictive-maintenance-ai-starter',
+  },
+  {
+    name: 'n8n-automation-starter',
+    focus: 'Base reutilizable de automatizaciones',
+    value: 'Acelera la construcción de nuevos workflows para casos de negocio reales.',
+    link: 'https://github.com/theo272004/n8n-automation-starter',
   },
 ]
 
 const featuredCredentials = [
-  { title: 'Registro DNDA 145 - Software Autotrigger', file: '/certificados/DNDA-145_Software_Autotrigger_Registro.pdf', type: 'DNDA' },
-  { title: 'Registro DNDA 146 - Software LaunchAssistPy', file: '/certificados/DNDA-146_Software_LaunchAssistPy_Registro.pdf', type: 'DNDA' },
-  { title: 'Registro DNDA 172 - Software STIMO', file: '/certificados/DNDA-172_Software_STIMO_Registro.pdf', type: 'DNDA' },
-  { title: 'Certificado SENA - Construcción de Bases de Datos con MySQL', file: '/certificados/Certificado_SENA_Bases-de-Datos-MySQL.pdf', type: 'MySQL' },
+  { title: 'Registro DNDA 145 - Software Autotrigger', file: assetUrl('certificados/DNDA-145_Software_Autotrigger_Registro.pdf'), type: 'DNDA' },
+  { title: 'Registro DNDA 146 - Software LaunchAssistPy', file: assetUrl('certificados/DNDA-146_Software_LaunchAssistPy_Registro.pdf'), type: 'DNDA' },
+  { title: 'Registro DNDA 172 - Software STIMO', file: assetUrl('certificados/DNDA-172_Software_STIMO_Registro.pdf'), type: 'DNDA' },
+  { title: 'Certificado SENA - Bases de Datos con MySQL', file: assetUrl('certificados/Certificado_SENA_Bases-de-Datos-MySQL.pdf'), type: 'MySQL' },
 ]
 
 const downloadableResources = [
-  { title: 'CV - Mateo David Castro Villegas', file: '/certificados/CV_Mateo_David_Castro_Villegas.pdf' },
-  { title: 'Manual de Usuario - Autotrigger', file: '/certificados/Manual_Autotrigger.pdf' },
-  { title: 'Manual de Usuario - LaunchAssistPy', file: '/certificados/Manual_LaunchAssistPy.pdf' },
-  { title: 'Manual de Usuario - STIMO', file: '/certificados/Manual_STIMO.pdf' },
+  { title: 'CV - Mateo David Castro Villegas', file: assetUrl('certificados/CV_Mateo_David_Castro_Villegas.pdf') },
+  { title: 'Manual de Usuario - Autotrigger', file: assetUrl('certificados/Manual_Autotrigger.pdf') },
+  { title: 'Manual de Usuario - LaunchAssistPy', file: assetUrl('certificados/Manual_LaunchAssistPy.pdf') },
+  { title: 'Manual de Usuario - STIMO', file: assetUrl('certificados/Manual_STIMO.pdf') },
 ]
 
 function App() {
@@ -82,7 +129,7 @@ function App() {
     <main className="wrap">
       <header className="hero card">
         <div className="hero-content">
-          <span className="hero-eyebrow">Perfil profesional</span>
+          <span className="hero-eyebrow">Portfolio Profesional</span>
           <h1>{profile.name}</h1>
           <p className="role">{profile.role}</p>
           <p className="hero-summary">{profile.summary}</p>
@@ -94,7 +141,7 @@ function App() {
           </div>
 
           <div className="hero-actions">
-            <a className="btn btn-primary" href="/certificados/CV_Mateo_David_Castro_Villegas.pdf" target="_blank" rel="noreferrer">
+            <a className="btn btn-primary" href={assetUrl('certificados/CV_Mateo_David_Castro_Villegas.pdf')} target="_blank" rel="noreferrer">
               Descargar CV
             </a>
             <a className="btn btn-secondary" href={profile.linkedin} target="_blank" rel="noreferrer">
@@ -107,13 +154,14 @@ function App() {
         </div>
 
         <aside className="hero-stats" aria-label="Indicadores de perfil">
+          <div className="photo-placeholder" aria-label="Espacio para foto de perfil">Foto</div>
           <div className="stat-card">
             <strong>3</strong>
             <span>Registros de software DNDA</span>
           </div>
           <div className="stat-card">
             <strong>1</strong>
-            <span>Certificación en MySQL (SENA)</span>
+            <span>Certificación MySQL (SENA)</span>
           </div>
           <div className="stat-card">
             <strong>+12%</strong>
@@ -124,7 +172,7 @@ function App() {
 
       <section className="grid">
         <article className="card">
-          <h2>Habilidades</h2>
+          <h2>Habilidades técnicas</h2>
           {skills.map((group) => (
             <div key={group.area} className="skill-group">
               <h3>{group.area}</h3>
@@ -147,6 +195,8 @@ function App() {
               <option value="automatizacion">Automatización</option>
               <option value="ia">IA</option>
               <option value="software">Software</option>
+              <option value="datos">Datos/SQL</option>
+              <option value="n8n">n8n</option>
             </select>
             <input
               placeholder="Buscar por tecnología o nombre"
@@ -170,6 +220,21 @@ function App() {
             ))}
           </ul>
         </article>
+      </section>
+
+      <section className="card">
+        <h2>Repositorios técnicos alineados al perfil</h2>
+        <p className="section-intro">Portafolio enfocado en SQL, n8n e IA aplicada a mantenimiento industrial.</p>
+        <div className="repo-grid">
+          {repoHighlights.map((repo) => (
+            <article key={repo.name} className="repo-card">
+              <h3>{repo.name}</h3>
+              <p><strong>Enfoque:</strong> {repo.focus}</p>
+              <p>{repo.value}</p>
+              <a className="evidence-link" href={repo.link} target="_blank" rel="noreferrer">Ver repositorio →</a>
+            </article>
+          ))}
+        </div>
       </section>
 
       <section className="card">
