@@ -1,248 +1,207 @@
-import { useMemo, useState } from 'react'
+import { useEffect } from 'react'
 import './App.css'
 
 const assetUrl = (path) => `${import.meta.env.BASE_URL}${path.replace(/^\/+/, '')}`
 
-const profile = {
-  name: 'Mateo David Castro Villegas',
-  role: 'Automation & AI Engineer · Ingeniero Mecatrónico',
-  city: 'Barranquilla, Colombia',
-  phone: '+57 302 413 7347',
-  email: 'mateodcvnew@gmail.com',
-  linkedin: 'https://www.linkedin.com/in/mateo-castro-villegas-84b738340',
-  github: 'https://github.com/theo272004',
-  summary:
-    'Diseño soluciones de automatización industrial y software con IA aplicada, enfocadas en resultados reales: mayor disponibilidad, menos tareas manuales y mejor toma de decisiones operativas.',
-}
-
 const skills = [
-  { area: 'Automatización y Control', items: ['Programación PLC', 'Desarrollo HMI', 'Control de procesos industriales'] },
-  { area: 'Programación', items: ['Python', 'C++', 'React', 'SQL', 'MATLAB'] },
-  { area: 'IA aplicada', items: ['LLMs', 'LangChain/LangGraph', 'Ollama', 'Open WebUI'] },
-  { area: 'Ingeniería', items: ['Mantenimiento preventivo/correctivo', 'Diagnóstico técnico', 'SolidWorks'] },
-]
-
-const projects = [
   {
-    name: 'Sistema de fabricación Superflux',
-    stack: ['PLC', 'HMI', 'Control industrial'],
-    impact: 'Programación integral del sistema de fabricación y operación asistida.',
-    metric: 'Disponibilidad estimada +12% en línea crítica',
-    status: 'Implementado en planta',
-    evidence: assetUrl('proyectos/superflux/README.md'),
-    tag: 'automatizacion',
+    icon: '🤖',
+    name: 'IA & LLMs',
+    tags: ['LangChain', 'LangGraph', 'Ollama', 'Agentes IA', 'RAG'],
   },
   {
-    name: 'Software DNDA #1 (automatización)',
-    stack: ['Python', 'Automatización'],
-    impact: 'Herramienta registrada para optimizar tareas operativas en planta.',
-    metric: 'Reducción de tareas manuales repetitivas ~35%',
-    status: 'Registro DNDA activo',
-    evidence: assetUrl('proyectos/dnda-automatizacion/README.md'),
-    tag: 'software',
+    icon: '⚡',
+    name: 'Automatización',
+    tags: ['n8n', 'API REST', 'Webhooks', 'Workflows', 'Integraciones'],
   },
   {
-    name: 'Software DNDA #2 (visión + IA)',
-    stack: ['Visión artificial', 'IA'],
-    impact: 'Prototipo aplicado a análisis visual y toma de decisiones.',
-    metric: 'Tiempo de revisión visual -40% (piloto)',
-    status: 'Piloto validado',
-    evidence: assetUrl('proyectos/dnda-vision-ia/README.md'),
-    tag: 'ia',
+    icon: '💻',
+    name: 'Programación',
+    tags: ['Python', 'SQL', 'C++', 'React', 'MATLAB', 'MySQL'],
   },
   {
-    name: 'SQL Maintenance Analytics',
-    stack: ['SQL', 'SQLite', 'CTE', 'Window Functions'],
-    impact: 'Mini data mart con KPIs de mantenimiento (MTTR, MTBF, SLA y scoring de riesgo).',
-    metric: '9 consultas KPI listas para demo técnica',
-    status: 'Repositorio técnico publicado',
-    evidence: 'https://github.com/theo272004/sql-maintenance-analytics',
-    tag: 'datos',
+    icon: '🏭',
+    name: 'Sistemas Industriales',
+    tags: ['PLCs', 'HMI', 'Control de Procesos', 'Mecatrónica', 'SolidWorks'],
   },
   {
-    name: 'n8n Maintenance Orchestrator',
-    stack: ['n8n', 'Webhook', 'Automatización de flujo'],
-    impact: 'Orquestación de tickets de mantenimiento con priorización automática por severidad.',
-    metric: 'Respuesta operativa estructurada en un solo flujo',
-    status: 'Workflow funcional importable',
-    evidence: 'https://github.com/theo272004/n8n-maintenance-orchestrator',
-    tag: 'n8n',
+    icon: '👁️',
+    name: 'Visión Artificial',
+    tags: ['Computer Vision', 'IA Aplicada', 'Inspección Visual'],
+  },
+  {
+    icon: '📊',
+    name: 'Gestión Técnica',
+    tags: ['KPIs', 'Reportes', 'Mantenimiento', 'Documentación'],
   },
 ]
 
-const featuredCredentials = [
-  { title: 'Registro DNDA 145 - Software Autotrigger', file: assetUrl('certificados/DNDA-145_Software_Autotrigger_Registro.pdf'), type: 'DNDA' },
-  { title: 'Registro DNDA 146 - Software LaunchAssistPy', file: assetUrl('certificados/DNDA-146_Software_LaunchAssistPy_Registro.pdf'), type: 'DNDA' },
-  { title: 'Registro DNDA 172 - Software STIMO', file: assetUrl('certificados/DNDA-172_Software_STIMO_Registro.pdf'), type: 'DNDA' },
-  { title: 'Certificado SENA - Bases de Datos con MySQL', file: assetUrl('certificados/Certificado_SENA_Bases-de-Datos-MySQL.pdf'), type: 'MySQL' },
-]
-
-const downloadableResources = [
+const certificates = [
   { title: 'CV - Mateo David Castro Villegas', file: assetUrl('certificados/CV_Mateo_David_Castro_Villegas.pdf') },
-  { title: 'Manual de Usuario - Autotrigger', file: assetUrl('certificados/Manual_Autotrigger.pdf') },
-  { title: 'Manual de Usuario - LaunchAssistPy', file: assetUrl('certificados/Manual_LaunchAssistPy.pdf') },
-  { title: 'Manual de Usuario - STIMO', file: assetUrl('certificados/Manual_STIMO.pdf') },
+  { title: 'DNDA-145 Software Autotrigger', file: assetUrl('certificados/DNDA-145_Software_Autotrigger_Registro.pdf') },
+  { title: 'DNDA-146 Software LaunchAssistPy', file: assetUrl('certificados/DNDA-146_Software_LaunchAssistPy_Registro.pdf') },
+  { title: 'DNDA-172 Software STIMO', file: assetUrl('certificados/DNDA-172_Software_STIMO_Registro.pdf') },
+  { title: 'SENA - Bases de Datos con MySQL', file: assetUrl('certificados/Certificado_SENA_Bases-de-Datos-MySQL.pdf') },
 ]
 
 function App() {
-  const [filter, setFilter] = useState('todos')
-  const [search, setSearch] = useState('')
+  useEffect(() => {
+    const observer = new IntersectionObserver(
+      (entries) => {
+        entries.forEach((entry) => {
+          if (entry.isIntersecting) entry.target.classList.add('visible')
+        })
+      },
+      { threshold: 0.12 }
+    )
 
-  const filteredProjects = useMemo(() => {
-    return projects.filter((p) => {
-      const byTag = filter === 'todos' || p.tag === filter
-      const byText = `${p.name} ${p.stack.join(' ')} ${p.impact}`
-        .toLowerCase()
-        .includes(search.toLowerCase())
-      return byTag && byText
-    })
-  }, [filter, search])
+    document.querySelectorAll('.reveal').forEach((el) => observer.observe(el))
+    return () => observer.disconnect()
+  }, [])
 
   return (
     <>
-      <nav className="top-nav">
-        <a className="nav-logo" href="#home">MCV</a>
-        <div className="nav-links">
-          <a href="#skills">Habilidades</a>
-          <a href="#projects">Proyectos</a>
-          <a href="#credentials">Certificados</a>
-          <a href="#contact">Contacto</a>
-        </div>
+      <nav>
+        <a href="#" className="nav-logo">MCV</a>
+        <ul className="nav-links">
+          <li><a href="#skills">Habilidades</a></li>
+          <li><a href="#experience">Experiencia</a></li>
+          <li><a href="#projects">Proyectos</a></li>
+          <li><a href="#education">Educación</a></li>
+          <li><a href="#contact">Contacto</a></li>
+        </ul>
       </nav>
 
-      <main className="wrap" id="home">
-        <header className="hero card">
-          <div className="hero-content">
-            <span className="hero-eyebrow">Disponible remoto · {profile.city}</span>
-            <h1>{profile.name}</h1>
-            <p className="role">{profile.role}</p>
-            <p className="hero-summary">{profile.summary}</p>
-
-            <div className="meta">
-              <span>📧 {profile.email}</span>
-              <span>📱 {profile.phone}</span>
-            </div>
-
-            <div className="hero-actions">
-              <a className="btn btn-primary" href={assetUrl('certificados/CV_Mateo_David_Castro_Villegas.pdf')} target="_blank" rel="noreferrer">
-                Descargar CV
-              </a>
-              <a className="btn btn-secondary" href={profile.linkedin} target="_blank" rel="noreferrer">
-                LinkedIn
-              </a>
-              <a className="btn btn-secondary" href={profile.github} target="_blank" rel="noreferrer">
-                GitHub
-              </a>
-            </div>
+      <div className="hero">
+        <div className="hero-left">
+          <span className="hero-tag">Disponible remoto · Barranquilla, Colombia</span>
+          <h1 className="hero-name">
+            Mateo David
+            <span>Castro Villegas</span>
+          </h1>
+          <p className="hero-title">Automation & AI Engineer · Ingeniero Mecatrónico</p>
+          <p className="hero-desc">
+            Diseño y construyo automatizaciones end-to-end que conectan inteligencia artificial,
+            sistemas industriales y software. Desde PLCs hasta agentes LLM — hago que las máquinas
+            y los datos trabajen juntos de manera inteligente.
+          </p>
+          <div className="hero-cta">
+            <a href="#contact" className="btn btn-primary">↗ Contactar</a>
+            <a href={assetUrl('certificados/CV_Mateo_David_Castro_Villegas.pdf')} target="_blank" rel="noreferrer" className="btn btn-ghost">
+              Ver CV
+            </a>
           </div>
+        </div>
 
-          <aside className="hero-stats" aria-label="Indicadores de perfil">
-            <div className="photo-placeholder" aria-label="Espacio para foto de perfil">Foto</div>
-            <div className="stat-card">
-              <strong>3</strong>
-              <span>Registros de software DNDA</span>
-            </div>
-            <div className="stat-card">
-              <strong>1</strong>
-              <span>Certificación MySQL (SENA)</span>
-            </div>
-            <div className="stat-card">
-              <strong>+12%</strong>
-              <span>Impacto estimado en disponibilidad</span>
-            </div>
-          </aside>
-        </header>
-
-        <section className="grid" id="skills">
-          <article className="card">
-            <h2>Habilidades técnicas</h2>
-            {skills.map((group) => (
-              <div key={group.area} className="skill-group">
-                <h3>{group.area}</h3>
-                <div className="chips">
-                  {group.items.map((item) => (
-                    <span key={item} className="chip">
-                      {item}
-                    </span>
-                  ))}
-                </div>
+        <div className="hero-right">
+          <div className="circuit-container">
+            <div className="circuit-ring"></div>
+            <div className="circuit-ring"></div>
+            <div className="circuit-ring"></div>
+            <div className="circuit-center">
+              <div className="circuit-core">
+                <span className="circuit-icon">⚙️</span>
+                <span className="circuit-label">Mecatrónico</span>
               </div>
-            ))}
-          </article>
-
-          <article className="card" id="projects">
-            <h2>Proyectos destacados</h2>
-            <div className="controls">
-              <select value={filter} onChange={(e) => setFilter(e.target.value)}>
-                <option value="todos">Todos</option>
-                <option value="automatizacion">Automatización</option>
-                <option value="ia">IA</option>
-                <option value="software">Software</option>
-                <option value="datos">Datos/SQL</option>
-                <option value="n8n">n8n</option>
-              </select>
-              <input
-                placeholder="Buscar por tecnología o nombre"
-                value={search}
-                onChange={(e) => setSearch(e.target.value)}
-              />
             </div>
+          </div>
+          <div className="floating-tag ft1">// n8n · LangChain</div>
+          <div className="floating-tag ft2">// PLC · HMI</div>
+          <div className="floating-tag ft3">// Python · APIs</div>
+          <div className="floating-tag ft4">// LLM · Ollama</div>
+        </div>
+      </div>
 
-            <ul className="project-list">
-              {filteredProjects.map((project) => (
-                <li key={project.name}>
-                  <h3>{project.name}</h3>
-                  <p>{project.impact}</p>
-                  <p><strong>Impacto medible:</strong> {project.metric}</p>
-                  <p><strong>Estado:</strong> {project.status}</p>
-                  <small>{project.stack.join(' · ')}</small>
-                  <p>
-                    <a className="evidence-link" href={project.evidence} target="_blank" rel="noreferrer">Ver evidencia técnica →</a>
-                  </p>
-                </li>
-              ))}
+      <div className="stats-bar">
+        <div className="stat-item reveal"><span className="stat-num">3</span><span className="stat-label">Softwares registrados DNDA</span></div>
+        <div className="stat-item reveal"><span className="stat-num">+12%</span><span className="stat-label">Disponibilidad estimada</span></div>
+        <div className="stat-item reveal"><span className="stat-num">100%</span><span className="stat-label">Disponible remoto</span></div>
+        <div className="stat-item reveal"><span className="stat-num">B2</span><span className="stat-label">Inglés técnico</span></div>
+      </div>
+
+      <section id="skills">
+        <div className="section-header reveal"><span className="section-num">01</span><h2 className="section-title">Habilidades</h2><div className="section-line"></div></div>
+        <div className="skills-grid">
+          {skills.map((skill) => (
+            <div className="skill-card reveal" key={skill.name}>
+              <span className="skill-icon">{skill.icon}</span>
+              <div className="skill-name">{skill.name}</div>
+              <div className="skill-tags">
+                {skill.tags.map((tag) => <span className="tag" key={tag}>{tag}</span>)}
+              </div>
+            </div>
+          ))}
+        </div>
+      </section>
+
+      <section id="experience" className="section-bordered">
+        <div className="section-header reveal"><span className="section-num">02</span><h2 className="section-title">Experiencia</h2><div className="section-line"></div></div>
+        <div className="exp-item reveal">
+          <div className="exp-meta">
+            <div className="exp-date">Oct 2024 – Abr 2025</div>
+            <div className="exp-company">Farmacápsulas</div>
+            <div className="exp-location">Barranquilla, Colombia</div>
+          </div>
+          <div className="exp-content">
+            <div className="exp-role">Ingeniero de Automatización & Mantenimiento</div>
+            <ul className="exp-bullets">
+              <li>Automatización end-to-end del sistema de fabricación de Superflux con PLC y HMI.</li>
+              <li>Enlace técnico con equipos internacionales para instalación de nueva maquinaria.</li>
+              <li>Diagnóstico de fallas mecánicas, eléctricas y electrónicas en línea productiva.</li>
+              <li>Implementación de mantenimientos preventivos/correctivos con impacto operativo.</li>
             </ul>
-          </article>
-        </section>
+          </div>
+        </div>
+      </section>
 
-        <section className="card" id="credentials">
-          <h2>Certificados y descargables</h2>
-          <p className="section-intro">Documentación clave para validación profesional y revisión técnica.</p>
+      <section id="projects" className="section-bordered">
+        <div className="section-header reveal"><span className="section-num">03</span><h2 className="section-title">Proyectos</h2><div className="section-line"></div></div>
+        <div className="projects-grid">
+          <div className="project-card reveal"><div className="project-num">01</div><div className="project-badge">DNDA</div><div className="project-title">Software Autotrigger</div><div className="project-desc">Automatización de tareas técnicas repetitivas en entorno industrial.</div></div>
+          <div className="project-card reveal"><div className="project-num">02</div><div className="project-badge">DNDA</div><div className="project-title">LaunchAssistPy</div><div className="project-desc">Asistente para flujos operativos y soporte en procesos técnicos.</div></div>
+          <div className="project-card reveal"><div className="project-num">03</div><div className="project-badge">DNDA</div><div className="project-title">STIMO (Visión + IA)</div><div className="project-desc">Inspección visual con IA para acelerar análisis y decisiones en piloto.</div></div>
+        </div>
+      </section>
 
-          <div className="credentials-grid">
-            {featuredCredentials.map((item) => (
-              <article key={item.title} className="credential-card">
-                <span className="credential-badge">{item.type}</span>
-                <h3>{item.title}</h3>
-                <a className="btn btn-secondary" href={item.file} target="_blank" rel="noreferrer">
-                  Ver certificado
-                </a>
-              </article>
-            ))}
+      <section id="education" className="section-bordered">
+        <div className="section-header reveal"><span className="section-num">04</span><h2 className="section-title">Educación</h2><div className="section-line"></div></div>
+        <div className="edu-grid">
+          <div className="edu-card reveal"><div className="edu-year">2025</div><div className="edu-degree">Ingeniería Mecatrónica</div><div className="edu-institution">Universidad Autónoma del Caribe</div></div>
+          <div className="edu-card reveal"><div className="edu-year">2024</div><div className="edu-degree">Investigador Junior</div><div className="edu-institution">Universidad Autónoma del Caribe</div></div>
+          <div className="edu-card reveal"><div className="edu-year">2025</div><div className="edu-degree">Bases de Datos con MySQL</div><div className="edu-institution">SENA</div></div>
+          <div className="edu-card reveal"><div className="edu-year">Idiomas</div><div className="edu-degree">Español nativo · Inglés B2</div><div className="edu-institution">Documentación técnica y trabajo internacional</div></div>
+        </div>
+      </section>
+
+      <section id="contact" className="contact-section">
+        <div className="contact-inner">
+          <div>
+            <div className="contact-headline reveal">Listo para <em>automatizar</em> con impacto real</div>
+            <p className="contact-text reveal">También puedes descargar directamente tus certificados y CV desde aquí.</p>
+            <div className="hero-cta reveal">
+              <a href="mailto:mateodcvnew@gmail.com" className="btn btn-primary">Escribir ahora ↗</a>
+              <a href="https://github.com/theo272004" target="_blank" rel="noreferrer" className="btn btn-ghost">GitHub</a>
+            </div>
           </div>
 
-          <h3 className="subsection-title">Descargables adicionales</h3>
-          <ul className="download-list">
-            {downloadableResources.map((resource) => (
-              <li key={resource.title}>
-                <span>{resource.title}</span>
-                <a className="download-link" href={resource.file} target="_blank" rel="noreferrer">
-                  Descargar
-                </a>
-              </li>
-            ))}
-          </ul>
-        </section>
-
-        <section className="card contact" id="contact">
-          <h2>Contacto</h2>
-          <p className="hero-summary">Si quieres, te ayudo a automatizar procesos, integrar IA y mejorar operaciones técnicas.</p>
-          <div className="hero-actions">
-            <a className="btn btn-primary" href={`mailto:${profile.email}`}>Escribirme</a>
-            <a className="btn btn-secondary" href={`tel:${profile.phone.replace(/\s/g, '')}`}>Llamar</a>
+          <div className="contact-links reveal">
+            <a href="mailto:mateodcvnew@gmail.com" className="contact-link"><span className="contact-link-icon">✉</span><span className="contact-link-text">mateodcvnew@gmail.com</span></a>
+            <a href="tel:+573024137347" className="contact-link"><span className="contact-link-icon">📱</span><span className="contact-link-text">+57 302 413 7347</span></a>
+            <a href="https://www.linkedin.com/in/mateo-castro-villegas-84b738340" target="_blank" rel="noreferrer" className="contact-link"><span className="contact-link-icon">in</span><span className="contact-link-text">LinkedIn</span></a>
           </div>
-        </section>
-      </main>
+        </div>
+
+        <div className="downloads">
+          {certificates.map((c) => (
+            <a className="download-chip" key={c.title} href={c.file} target="_blank" rel="noreferrer">⬇ {c.title}</a>
+          ))}
+        </div>
+      </section>
+
+      <footer>
+        <span className="footer-text">© 2026 <span className="footer-accent">Mateo David Castro Villegas</span></span>
+        <span className="footer-text">Automation & AI Engineer · Ingeniero Mecatrónico</span>
+      </footer>
     </>
   )
 }
