@@ -85,11 +85,17 @@ function App() {
           <li><a href="#education">Educación</a></li>
           <li><a href="#contact">Contacto</a></li>
         </ul>
+        <div className="nav-social">
+          <a href="https://github.com/theo272004" target="_blank" rel="noreferrer">⌥</a>
+          <a href="https://www.linkedin.com/in/mateo-castro-villegas-84b738340" target="_blank" rel="noreferrer">in</a>
+        </div>
       </nav>
 
       <div className="hero">
+        <div className="scanline"></div>
         <div className="hero-left">
-          <span className="hero-tag">Disponible remoto · Barranquilla, Colombia</span>
+          <div className="status-pill"><span className="status-dot"></span>Disponible para proyectos remotos</div>
+          <span className="hero-tag">Barranquilla, Colombia</span>
           <h1 className="hero-name">
             Mateo David
             <span>Castro Villegas</span>
@@ -138,6 +144,7 @@ function App() {
         <div className="stat-item reveal"><span className="stat-num">+12%</span><span className="stat-label">Disponibilidad estimada</span></div>
         <div className="stat-item reveal"><span className="stat-num">100%</span><span className="stat-label">Disponible remoto</span></div>
         <div className="stat-item reveal"><span className="stat-num">B2</span><span className="stat-label">Inglés técnico</span></div>
+        <div className="stat-item reveal"><span className="stat-num">AI</span><span className="stat-label">First mindset</span></div>
       </div>
 
       <section id="skills">
