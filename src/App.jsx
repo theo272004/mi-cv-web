@@ -7,7 +7,7 @@ const skills = [
   {
     icon: '🤖',
     name: 'IA & LLMs',
-    tags: ['LangChain', 'LangGraph', 'Ollama', 'Agentes IA', 'RAG'],
+    tags: ['LangGraph', 'Ollama', 'Agentes IA', 'RAG'],
   },
   {
     icon: '⚡',
@@ -32,7 +32,7 @@ const skills = [
   {
     icon: '📊',
     name: 'Gestión Técnica',
-    tags: ['KPIs', 'Reportes', 'Mantenimiento', 'Documentación'],
+    tags: ['Excel', 'Power BI', 'KPIs', 'Reportes', 'Mantenimiento', 'Documentación'],
   },
 ]
 
@@ -44,7 +44,7 @@ const orbitSkills = [
   { label: 'PLC', radius: 260, speed: 24, delay: 1 },
   { label: 'HMI', radius: 260, speed: 28, delay: 3 },
   { label: 'n8n', radius: 260, speed: 26, delay: 5 },
-  { label: 'LangChain', radius: 260, speed: 30, delay: 7 },
+  { label: 'Power BI', radius: 260, speed: 30, delay: 7 },
   { label: 'SQL', radius: 300, speed: 34, delay: 0 },
   { label: 'React', radius: 300, speed: 32, delay: 2.5 },
   { label: 'Visión IA', radius: 300, speed: 36, delay: 5 },
