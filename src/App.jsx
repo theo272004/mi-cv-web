@@ -97,20 +97,21 @@ function App() {
           <div className="status-pill"><span className="status-dot"></span>Disponible para proyectos remotos</div>
           <span className="hero-tag">Barranquilla, Colombia</span>
           <h1 className="hero-name">
-            Mateo David
-            <span>Castro Villegas</span>
+            <span className="line1">MATEO</span>
+            <span className="line2">CASTRO</span>
+            <span className="line3">VILLEGAS</span>
           </h1>
-          <p className="hero-title">Automation & AI Engineer · Ingeniero Mecatrónico</p>
+          <p className="hero-title">AUTOMATION & AI ENGINEER · INGENIERO MECATRÓNICO</p>
           <p className="hero-desc">
             Diseño y construyo automatizaciones end-to-end que conectan inteligencia artificial,
             sistemas industriales y software. Desde PLCs hasta agentes LLM — hago que las máquinas
             y los datos trabajen juntos de manera inteligente.
           </p>
           <div className="hero-cta">
-            <a href="#contact" className="btn btn-primary">↗ Contactar</a>
-            <a href={assetUrl('certificados/CV_Mateo_David_Castro_Villegas.pdf')} target="_blank" rel="noreferrer" className="btn btn-ghost">
-              Ver CV
-            </a>
+            <a href="#contact" className="btn btn-primary">Contactar ↗</a>
+            <a href="#projects" className="btn btn-ghost">Ver proyectos</a>
+            <a href="https://github.com/theo272004" target="_blank" rel="noreferrer" className="btn btn-icon">⌥</a>
+            <a href="https://www.linkedin.com/in/mateo-castro-villegas-84b738340" target="_blank" rel="noreferrer" className="btn btn-icon">in</a>
           </div>
         </div>
 
@@ -164,21 +165,19 @@ function App() {
 
       <section id="experience" className="section-bordered">
         <div className="section-header reveal"><span className="section-num">02</span><h2 className="section-title">Experiencia</h2><div className="section-line"></div></div>
-        <div className="exp-item reveal">
-          <div className="exp-meta">
-            <div className="exp-date">Oct 2024 – Abr 2025</div>
-            <div className="exp-company">Farmacápsulas</div>
-            <div className="exp-location">Barranquilla, Colombia</div>
-          </div>
-          <div className="exp-content">
+        <div className="exp-panel reveal">
+          <div className="exp-top-row">
             <div className="exp-role">Ingeniero de Automatización & Mantenimiento</div>
-            <ul className="exp-bullets">
-              <li>Automatización end-to-end del sistema de fabricación de Superflux con PLC y HMI.</li>
-              <li>Enlace técnico con equipos internacionales para instalación de nueva maquinaria.</li>
-              <li>Diagnóstico de fallas mecánicas, eléctricas y electrónicas en línea productiva.</li>
-              <li>Implementación de mantenimientos preventivos/correctivos con impacto operativo.</li>
-            </ul>
+            <div className="exp-date">Oct 2024 – Abr 2025</div>
           </div>
+          <div className="exp-company">Farmacápsulas · Barranquilla, Colombia · Contrato término fijo</div>
+          <ul className="exp-bullets">
+            <li>Automatización end-to-end del sistema completo de fabricación de Superflux — lógica PLC, integración HMI y puesta en marcha.</li>
+            <li>Enlace técnico entre equipos internos y representantes internacionales (Syntegon, Bosch) para instalación de maquinaria nueva.</li>
+            <li>Elaboración de informes técnicos, registros operativos y tableros de KPIs para decisiones del equipo de operaciones.</li>
+            <li>Diagnóstico y resolución autónoma de fallas complejas: mecánicas, eléctricas y electrónicas.</li>
+            <li>Cronogramas de mantenimiento preventivo/correctivo que redujeron tiempos de inactividad en producción crítica.</li>
+          </ul>
         </div>
       </section>
 

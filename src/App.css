@@ -1,13 +1,15 @@
+@import url('https://fonts.googleapis.com/css2?family=Bebas+Neue&family=DM+Mono:wght@400;500&family=Outfit:wght@300;400;600;700;800&display=swap');
+
 :root {
-  --bg: #0a0a0a;
-  --surface: #111111;
-  --surface2: #161616;
-  --accent: #00e5a0;
-  --accent2: #0af0ff;
+  --bg: #060608;
+  --surface: #111116;
+  --surface2: #16161c;
+  --accent: #00ff88;
+  --accent2: #00d4ff;
   --text: #f0ede8;
-  --muted: #6b6b6b;
-  --border: #222;
-  --glow: rgba(0, 229, 160, 0.15);
+  --muted: #7a7a86;
+  --border: #1f1f28;
+  --glow: rgba(0, 255, 136, 0.15);
 }
 
 * { margin: 0; padding: 0; box-sizing: border-box; }
@@ -15,8 +17,8 @@ html { scroll-behavior: smooth; }
 body {
   background: var(--bg);
   color: var(--text);
-  font-family: 'Consolas', 'Space Mono', monospace;
-  font-size: 14px;
+  font-family: 'Outfit', sans-serif;
+  font-size: 15px;
   line-height: 1.7;
   overflow-x: hidden;
 }
@@ -49,10 +51,10 @@ nav {
 }
 
 .nav-logo {
-  font-weight: 800;
-  font-size: 1.35rem;
+  font-family: 'Bebas Neue', sans-serif;
+  font-size: 1.45rem;
   color: var(--accent);
-  letter-spacing: 0.05em;
+  letter-spacing: 0.12em;
   text-decoration: none;
 }
 
@@ -149,18 +151,25 @@ nav {
 }
 
 .hero-name {
-  font-size: clamp(2.6rem, 5vw, 4.4rem);
-  font-weight: 800;
-  line-height: 1;
-  margin-bottom: 0.3rem;
+  font-family: 'Bebas Neue', sans-serif;
+  font-size: clamp(4rem, 7vw, 7rem);
+  line-height: 0.92;
+  letter-spacing: 0.02em;
+  margin-bottom: 0.9rem;
   animation: fadeUp 0.7s 0.1s ease both;
 }
 
-.hero-name span { display: block; color: var(--accent); }
+.hero-name span { display: block; }
+.hero-name .line1 { color: #f3f3f3; }
+.hero-name .line2 { -webkit-text-stroke: 1px rgba(0,255,136,0.6); color: transparent; }
+.hero-name .line3 { color: var(--accent); }
 
 .hero-title {
-  font-size: clamp(1rem, 2vw, 1.4rem);
-  color: #8a8a8a;
+  font-family: 'DM Mono', monospace;
+  font-size: 0.78rem;
+  letter-spacing: 0.16em;
+  color: #8d8d98;
+  text-transform: uppercase;
   margin-bottom: 1.3rem;
   animation: fadeUp 0.7s 0.2s ease both;
 }
@@ -193,6 +202,20 @@ nav {
 
 .btn-ghost { background: transparent; color: var(--text); border: 1px solid var(--border); }
 .btn-ghost:hover { border-color: var(--accent); color: var(--accent); transform: translateY(-2px); }
+
+.btn-icon {
+  width: 46px;
+  justify-content: center;
+  padding: 0.72rem 0;
+  border: 1px solid #2d2d38;
+  color: #a0a0ad;
+  background: #12121a;
+}
+.btn-icon:hover {
+  border-color: var(--accent2);
+  color: var(--accent2);
+  transform: translateY(-2px);
+}
 
 .hero-right {
   position: relative;
@@ -279,8 +302,20 @@ section { padding: 4.5rem 2rem; max-width: 1200px; margin: 0 auto; }
 .section-bordered { border-top: 1px solid var(--border); }
 
 .section-header { display: flex; align-items: center; gap: 1.3rem; margin-bottom: 2.4rem; }
-.section-num { font-size: 0.65rem; letter-spacing: 0.2em; color: var(--accent); font-weight: 700; }
-.section-title { font-size: 1.65rem; font-weight: 800; letter-spacing: 0.05em; text-transform: uppercase; }
+.section-num {
+  font-family: 'DM Mono', monospace;
+  font-size: 0.62rem;
+  letter-spacing: 0.2em;
+  color: var(--accent);
+  border: 1px solid rgba(0,255,136,0.25);
+  padding: 0.2rem 0.45rem;
+}
+.section-title {
+  font-family: 'Bebas Neue', sans-serif;
+  font-size: 2.1rem;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+}
 .section-line { flex: 1; height: 1px; background: var(--border); }
 
 .skills-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(240px, 1fr)); gap: 1px; background: var(--border); border: 1px solid var(--border); }
@@ -293,14 +328,40 @@ section { padding: 4.5rem 2rem; max-width: 1200px; margin: 0 auto; }
 .skill-tags { display: flex; flex-wrap: wrap; gap: 0.36rem; }
 .tag { font-size: 0.6rem; letter-spacing: 0.1em; text-transform: uppercase; padding: 0.2rem 0.58rem; background: rgba(0,229,160,0.08); border: 1px solid rgba(0,229,160,0.2); color: var(--accent); }
 
-.exp-item { display: grid; grid-template-columns: 220px 1fr; gap: 2rem; padding: 2rem 0; border-bottom: 1px solid var(--border); }
-.exp-date { font-size: 0.7rem; letter-spacing: 0.1em; color: var(--accent); text-transform: uppercase; margin-bottom: 0.45rem; }
-.exp-company { font-size: 0.95rem; font-weight: 700; color: #a2a2a2; }
-.exp-location { font-size: 0.72rem; color: #707070; margin-top: 0.25rem; }
-.exp-role { font-size: 1.26rem; font-weight: 700; margin-bottom: 0.9rem; }
-.exp-bullets { list-style: none; display: grid; gap: 0.52rem; }
-.exp-bullets li { display: flex; gap: 0.8rem; font-size: 0.84rem; color: #a6a6a6; }
-.exp-bullets li::before { content: '→'; color: var(--accent); }
+.exp-panel {
+  background: #12121a;
+  border: 1px solid #2a2a36;
+  padding: 2rem 2.2rem;
+}
+.exp-top-row {
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-start;
+  gap: 1rem;
+  margin-bottom: 0.8rem;
+}
+.exp-date {
+  font-family: 'DM Mono', monospace;
+  font-size: 0.68rem;
+  letter-spacing: 0.12em;
+  color: var(--accent);
+  border: 1px solid rgba(0,255,136,0.28);
+  background: rgba(0,255,136,0.07);
+  padding: 0.3rem 0.6rem;
+  text-transform: uppercase;
+  white-space: nowrap;
+}
+.exp-company {
+  font-family: 'DM Mono', monospace;
+  font-size: 0.78rem;
+  color: #8f8f9f;
+  letter-spacing: 0.08em;
+  margin-bottom: 1rem;
+}
+.exp-role { font-size: 1.8rem; font-family: 'Bebas Neue', sans-serif; letter-spacing: 0.04em; }
+.exp-bullets { list-style: none; display: grid; gap: 0.56rem; }
+.exp-bullets li { display: flex; gap: 0.7rem; font-size: 0.9rem; color: #aaaab8; }
+.exp-bullets li::before { content: '▸'; color: var(--accent); }
 
 .projects-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 1px; background: var(--border); border: 1px solid var(--border); }
 .project-card { background: var(--surface); padding: 1.5rem; position: relative; }
@@ -356,7 +417,7 @@ footer { padding: 1.2rem 2rem; display: flex; justify-content: space-between; bo
   .hero-left { padding: 6.8rem 1rem 3rem; }
   section { padding: 3rem 1rem; }
   .stats-bar { grid-template-columns: repeat(2, 1fr); }
-  .exp-item { grid-template-columns: 1fr; }
+  .exp-top-row { flex-direction: column; align-items: flex-start; }
   .projects-grid { grid-template-columns: 1fr; }
   .edu-grid { grid-template-columns: 1fr; }
   .contact-inner { grid-template-columns: 1fr; padding: 3rem 1rem 1rem; }
