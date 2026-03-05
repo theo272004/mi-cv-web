@@ -36,6 +36,21 @@ const skills = [
   },
 ]
 
+const orbitSkills = [
+  { label: 'Python', radius: 210, speed: 16, delay: 0 },
+  { label: 'APIs REST', radius: 210, speed: 20, delay: 2 },
+  { label: 'LLMs', radius: 210, speed: 18, delay: 4 },
+  { label: 'Ollama', radius: 210, speed: 22, delay: 6 },
+  { label: 'PLC', radius: 260, speed: 24, delay: 1 },
+  { label: 'HMI', radius: 260, speed: 28, delay: 3 },
+  { label: 'n8n', radius: 260, speed: 26, delay: 5 },
+  { label: 'LangChain', radius: 260, speed: 30, delay: 7 },
+  { label: 'SQL', radius: 300, speed: 34, delay: 0 },
+  { label: 'React', radius: 300, speed: 32, delay: 2.5 },
+  { label: 'Visión IA', radius: 300, speed: 36, delay: 5 },
+  { label: 'SolidWorks', radius: 300, speed: 38, delay: 7.5 },
+]
+
 const certificates = [
   { title: 'CV - Mateo David Castro Villegas', file: assetUrl('certificados/CV_Mateo_David_Castro_Villegas.pdf') },
   { title: 'DNDA-145 Software Autotrigger', file: assetUrl('certificados/DNDA-145_Software_Autotrigger_Registro.pdf') },
@@ -104,11 +119,17 @@ function App() {
                 <span className="circuit-label">Mecatrónico</span>
               </div>
             </div>
+
+            {orbitSkills.map((item) => (
+              <div
+                key={item.label}
+                className="orbit"
+                style={{ '--radius': `${item.radius}px`, '--speed': `${item.speed}s`, '--delay': `-${item.delay}s` }}
+              >
+                <span className="orbit-label">{item.label}</span>
+              </div>
+            ))}
           </div>
-          <div className="floating-tag ft1">// n8n · LangChain</div>
-          <div className="floating-tag ft2">// PLC · HMI</div>
-          <div className="floating-tag ft3">// Python · APIs</div>
-          <div className="floating-tag ft4">// LLM · Ollama</div>
         </div>
       </div>
 
