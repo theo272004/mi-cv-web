@@ -1,7 +1,7 @@
 import { useMemo, useState } from 'react'
 import './App.css'
 
-const assetUrl = (path) => new URL(path, import.meta.env.BASE_URL).toString()
+const assetUrl = (path) => `${import.meta.env.BASE_URL}${path.replace(/^\/+/, '')}`
 
 const profile = {
   name: 'Mateo David Castro Villegas',
