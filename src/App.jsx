@@ -142,10 +142,7 @@ function App() {
 
       <div className="stats-bar">
         <div className="stat-item reveal"><span className="stat-num">3</span><span className="stat-label">Softwares registrados DNDA</span></div>
-        <div className="stat-item reveal"><span className="stat-num">+12%</span><span className="stat-label">Disponibilidad estimada</span></div>
-        <div className="stat-item reveal"><span className="stat-num">100%</span><span className="stat-label">Disponible remoto</span></div>
         <div className="stat-item reveal"><span className="stat-num">B2</span><span className="stat-label">Inglés técnico</span></div>
-        <div className="stat-item reveal"><span className="stat-num">AI</span><span className="stat-label">First mindset</span></div>
       </div>
 
       <section id="skills">
@@ -219,9 +216,15 @@ function App() {
         </div>
 
         <div className="downloads">
-          {certificates.map((c) => (
-            <a className="download-chip" key={c.title} href={c.file} target="_blank" rel="noreferrer">⬇ {c.title}</a>
-          ))}
+          <h3 className="downloads-title">Descargar certificados y CV</h3>
+          <div className="downloads-grid">
+            {certificates.map((c) => (
+              <a className="download-chip" key={c.title} href={c.file} target="_blank" rel="noreferrer">
+                <span>⬇</span>
+                <span>{c.title}</span>
+              </a>
+            ))}
+          </div>
         </div>
       </section>
 

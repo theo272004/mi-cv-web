@@ -288,7 +288,7 @@ nav {
   border-bottom: 1px solid var(--border);
   background: var(--surface);
   display: grid;
-  grid-template-columns: repeat(5, 1fr);
+  grid-template-columns: repeat(2, 1fr);
 }
 
 .stat-item { padding: 1.6rem; text-align: center; border-right: 1px solid var(--border); }
@@ -388,9 +388,32 @@ section { padding: 4.5rem 2rem; max-width: 1200px; margin: 0 auto; }
 .contact-link:hover { border-color: var(--accent); color: var(--accent); transform: translateX(5px); }
 .contact-link-text { font-size: 0.78rem; letter-spacing: 0.04em; }
 
-.downloads { max-width: 1200px; margin: 0 auto; padding: 0 2rem 2rem; display: flex; flex-wrap: wrap; gap: 0.5rem; }
-.download-chip { text-decoration: none; color: var(--accent2); border: 1px solid #2e2e2e; background: #131313; padding: 0.4rem 0.6rem; font-size: 0.68rem; }
-.download-chip:hover { border-color: var(--accent); color: var(--accent); }
+.downloads { max-width: 1200px; margin: 0 auto; padding: 0 2rem 2rem; }
+.downloads-title {
+  font-family: 'DM Mono', monospace;
+  font-size: 0.72rem;
+  text-transform: uppercase;
+  letter-spacing: 0.12em;
+  color: #9a9aaa;
+  margin-bottom: 0.7rem;
+}
+.downloads-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+  gap: 0.5rem;
+}
+.download-chip {
+  text-decoration: none;
+  color: #bfefff;
+  border: 1px solid #2e2e3a;
+  background: #13131a;
+  padding: 0.6rem 0.7rem;
+  font-size: 0.72rem;
+  display: flex;
+  gap: 0.55rem;
+  align-items: center;
+}
+.download-chip:hover { border-color: var(--accent); color: var(--accent); background: rgba(0,255,136,0.07); }
 
 footer { padding: 1.2rem 2rem; display: flex; justify-content: space-between; border-top: 1px solid var(--border); }
 .footer-text { font-size: 0.66rem; color: #747474; letter-spacing: 0.09em; }
