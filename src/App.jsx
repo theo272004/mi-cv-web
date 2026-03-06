@@ -61,25 +61,6 @@ const orbitSkills = [
   { label: 'SolidWorks', radius: 300, speed: 38, delay: 7.5 },
 ]
 
-const engineeringCore = [
-  {
-    title: 'Electrónica',
-    items: ['Electrónica analógica y digital', 'Diagnóstico de tarjetas y señales', 'Instrumentación básica'],
-  },
-  {
-    title: 'Microcontroladores',
-    items: ['Programación de microcontroladores', 'Lectura de sensores', 'Control de actuadores'],
-  },
-  {
-    title: 'IoT',
-    items: ['Integración hardware/software', 'Comunicación con APIs', 'Monitoreo y telemetría'],
-  },
-  {
-    title: 'Mecánica aplicada',
-    items: ['Diagnóstico mecánico', 'Montaje y ajuste', 'Mantenimiento correctivo/preventivo'],
-  },
-]
-
 const certificates = [
   { title: 'CV - Mateo David Castro Villegas', file: assetUrl('certificados/CV_Mateo_David_Castro_Villegas.pdf') },
   { title: 'DNDA-145 Software Autotrigger', file: assetUrl('certificados/DNDA-145_Software_Autotrigger_Registro.pdf') },
@@ -188,19 +169,6 @@ function App() {
           ))}
         </div>
 
-        <div className="section-header reveal subheader"><span className="section-num">01B</span><h2 className="section-title">Base de ingeniería</h2><div className="section-line"></div></div>
-        <div className="core-grid">
-          {engineeringCore.map((block) => (
-            <article key={block.title} className="core-card reveal">
-              <h3>{block.title}</h3>
-              <ul>
-                {block.items.map((item) => (
-                  <li key={item}>{item}</li>
-                ))}
-              </ul>
-            </article>
-          ))}
-        </div>
       </section>
 
       <section id="experience" className="section-bordered">
