@@ -217,31 +217,52 @@ function App() {
         <div className="projects-grid">
           <div className="project-card reveal"><div className="project-num">01</div><div className="project-badge">DNDA</div><div className="project-title">Software Autotrigger</div><div className="project-desc">Automatización de tareas técnicas repetitivas en entorno industrial.</div></div>
           <div className="project-card reveal"><div className="project-num">02</div><div className="project-badge">DNDA</div><div className="project-title">LaunchAssistPy</div><div className="project-desc">Asistente para flujos operativos y soporte en procesos técnicos.</div></div>
-          <div className="project-card reveal stimo-card">
+          <div className="project-card reveal stimo-card" onClick={() => setStimoExpanded(true)}>
             <div className="project-num">03</div>
             <div className="project-badge">DNDA</div>
-            <div className="project-title">STIMO (Visión + IA)</div>
-            <div className="project-desc">Dispositivo mecatrónico para rehabilitación posoperatoria de rodilla con termoterapia, TENS/EMS y monitoreo del ángulo de flexión.</div>
-            <button className="expand-btn" onClick={() => setStimoExpanded((v) => !v)}>
-              {stimoExpanded ? 'Ocultar caso completo' : 'Ver caso completo + galería'}
-            </button>
+            <div className="project-title">STIMO (Rehabilitación de rodilla)</div>
+            <div className="project-desc">Dispositivo mecatrónico posoperatorio que integra termoterapia, TENS/EMS y monitoreo objetivo del ángulo de flexión en un solo sistema.</div>
+            <div className="stimo-carousel">
+              <img src={stimoImages[stimoIndex]} alt={`STIMO evidencia ${stimoIndex + 1}`} />
+              <div className="stimo-dots">
+                {stimoImages.map((_, i) => (
+                  <button
+                    key={i}
+                    className={i === stimoIndex ? 'dot active' : 'dot'}
+                    onClick={(e) => { e.stopPropagation(); setStimoIndex(i) }}
+                    aria-label={`Ir a imagen ${i + 1}`}
+                  ></button>
+                ))}
+              </div>
+            </div>
+            <small className="stimo-hint">Toca este bloque para abrir el caso completo</small>
           </div>
         </div>
 
-        {stimoExpanded && (
-          <article className="stimo-expanded reveal visible">
-            <h3>STIMO — caso completo</h3>
+      </section>
+
+      {stimoExpanded && (
+        <div className="stimo-modal" onClick={() => setStimoExpanded(false)}>
+          <article className="stimo-modal-card" onClick={(e) => e.stopPropagation()}>
+            <div className="stimo-modal-top">
+              <h3>STIMO — caso completo</h3>
+              <button className="stimo-close" onClick={() => setStimoExpanded(false)}>✕</button>
+            </div>
+
             <p>
-              STIMO integra en un solo sistema <strong>termoterapia</strong>, <strong>electroestimulación TENS/EMS</strong> y
-              <strong> monitoreo objetivo del ángulo de flexión</strong>, con arquitectura basada en ESP32, sensores
-              2×MPU6050 y MAX6675, interfaz web y registro automático de datos.
+              STIMO es un dispositivo mecatrónico de rehabilitación posoperatoria de rodilla que integra
+              termoterapia, electroestimulación TENS/EMS y monitoreo objetivo del ángulo de flexión en tiempo real.
+              La arquitectura usa ESP32, 2×MPU6050 para movimiento, MAX6675 para temperatura, interfaz web y
+              almacenamiento automático de datos.
             </p>
 
             <div className="stimo-kpis">
-              <span>42–50 °C (objetivo 45 °C ± 1 °C)</span>
-              <span>2–100 Hz · 50–500 μs · 0–100% intensidad</span>
-              <span>Ganancia media de flexión: +9.32°</span>
-              <span>Validación en Barranquilla con 3 participantes</span>
+              <span>Rango térmico clínico: 42 °C a 50 °C (objetivo 45 °C ± 1 °C)</span>
+              <span>Tiempo de estabilización térmica: 15–20 min</span>
+              <span>Electroestimulación configurable: 2–100 Hz · 50–500 μs · 0–100%</span>
+              <span>Ganancia media de flexión: +9.32° por participante</span>
+              <span>Validación funcional: 3 participantes + fisioterapeutas + médica especialista</span>
+              <span>Resultado: sinergia terapéutica real calor + TENS/EMS y alta satisfacción de uso</span>
             </div>
 
             <div className="stimo-gallery-large">
@@ -261,8 +282,8 @@ function App() {
               ))}
             </div>
           </article>
-        )}
-      </section>
+        </div>
+      )}
 
       <section id="education" className="section-bordered">
         <div className="section-header reveal"><span className="section-num">04</span><h2 className="section-title">Educación</h2><div className="section-line"></div></div>
