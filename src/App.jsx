@@ -277,7 +277,7 @@ function App() {
           <div className="project-card reveal stimo-card" onClick={() => setStimoExpanded(true)}>
             <div className="project-num">03</div>
             <div className="project-badge">DNDA</div>
-            <div className="project-title">STIMO — Rehabilitación inteligente de rodilla</div>
+            <div className="project-title">STIMO</div>
             <div className="project-desc">Dispositivo mecatrónico posoperatorio que integra termoterapia, TENS/EMS y monitoreo del ángulo de flexión en tiempo real.</div>
             <div className="stimo-carousel">
               <img src={stimoImages[stimoIndex]} alt={`STIMO evidencia ${stimoIndex + 1}`} />
@@ -381,7 +381,7 @@ function App() {
         <div className="stimo-modal" onClick={() => setStimoExpanded(false)}>
           <article className="stimo-modal-card" onClick={(e) => e.stopPropagation()}>
             <div className="stimo-modal-top">
-              <h3>STIMO — Rehabilitación inteligente de rodilla</h3>
+              <h3>STIMO</h3>
               <button className="stimo-close" onClick={() => setStimoExpanded(false)}>✕</button>
             </div>
 
