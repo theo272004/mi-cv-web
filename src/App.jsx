@@ -245,9 +245,9 @@ function App() {
             <div className="exp-role">Co-founder · Datafacta</div>
             <div className="exp-date">Producto en producción</div>
           </div>
-          <div className="exp-company">Datafacta · Sistema de Gestión de Facturas v2.5</div>
+          <div className="exp-company">Datafacta · Solución para PyMEs (Sistema de Gestión de Facturas v2.5)</div>
           <ul className="exp-bullets">
-            <li>Co-lideré el diseño y desarrollo de una plataforma de facturación con OCR avanzado, IA y validación antifraude para operación empresarial.</li>
+            <li>Co-lideré el diseño y desarrollo de una solución para PyMEs enfocada en digitalizar y automatizar la gestión de facturas con OCR avanzado, IA y validación antifraude.</li>
             <li>Implementé pipeline inteligente: captura multiformato (imágenes, PDF, ZIP), extracción de datos e ítems, score de confianza y validación cruzada de totales.</li>
             <li>Integré detección de duplicados por hash SHA-256 y verificación de comprobantes bancarios contra cuentas autorizadas para prevención de fraude.</li>
             <li>Arquitectura técnica: Python, Flask, OpenCV, MediaPipe, OCR/Tesseract, SQLite y servicios API para carga, historial y exportación.</li>
