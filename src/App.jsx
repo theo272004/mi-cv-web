@@ -1,4 +1,4 @@
-import { useEffect } from 'react'
+import { useEffect, useState } from 'react'
 import './App.css'
 
 const assetUrl = (path) => `${import.meta.env.BASE_URL}${path.replace(/^\/+/, '')}`
@@ -61,6 +61,15 @@ const orbitSkills = [
   { label: 'SolidWorks', radius: 300, speed: 38, delay: 7.5 },
 ]
 
+const stimoImages = [
+  assetUrl('img/stimo/stimo-1.jpg'),
+  assetUrl('img/stimo/stimo-2.jpg'),
+  assetUrl('img/stimo/stimo-3.jpg'),
+  assetUrl('img/stimo/stimo-4.jpg'),
+  assetUrl('img/stimo/stimo-5.jpg'),
+  assetUrl('img/stimo/stimo-6.jpg'),
+]
+
 const certificates = [
   { title: 'CV - Mateo David Castro Villegas', file: assetUrl('certificados/CV_Mateo_David_Castro_Villegas.pdf') },
   { title: 'DNDA-145 Software Autotrigger', file: assetUrl('certificados/DNDA-145_Software_Autotrigger_Registro.pdf') },
@@ -70,6 +79,16 @@ const certificates = [
 ]
 
 function App() {
+  const [stimoIndex, setStimoIndex] = useState(0)
+
+  useEffect(() => {
+    const timer = setInterval(() => {
+      setStimoIndex((prev) => (prev + 1) % stimoImages.length)
+    }, 2500)
+
+    return () => clearInterval(timer)
+  }, [])
+
   useEffect(() => {
     const observer = new IntersectionObserver(
       (entries) => {
@@ -194,7 +213,20 @@ function App() {
         <div className="projects-grid">
           <div className="project-card reveal"><div className="project-num">01</div><div className="project-badge">DNDA</div><div className="project-title">Software Autotrigger</div><div className="project-desc">Automatización de tareas técnicas repetitivas en entorno industrial.</div></div>
           <div className="project-card reveal"><div className="project-num">02</div><div className="project-badge">DNDA</div><div className="project-title">LaunchAssistPy</div><div className="project-desc">Asistente para flujos operativos y soporte en procesos técnicos.</div></div>
-          <div className="project-card reveal"><div className="project-num">03</div><div className="project-badge">DNDA</div><div className="project-title">STIMO (Visión + IA)</div><div className="project-desc">Inspección visual con IA para acelerar análisis y decisiones en piloto.</div></div>
+          <div className="project-card reveal">
+            <div className="project-num">03</div>
+            <div className="project-badge">DNDA</div>
+            <div className="project-title">STIMO (Visión + IA)</div>
+            <div className="project-desc">Inspección visual con IA para acelerar análisis y decisiones en piloto.</div>
+            <div className="stimo-carousel">
+              <img src={stimoImages[stimoIndex]} alt={`STIMO evidencia ${stimoIndex + 1}`} />
+              <div className="stimo-dots">
+                {stimoImages.map((_, i) => (
+                  <span key={i} className={i === stimoIndex ? 'dot active' : 'dot'}></span>
+                ))}
+              </div>
+            </div>
+          </div>
         </div>
       </section>
 

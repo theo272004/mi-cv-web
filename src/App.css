@@ -371,6 +371,34 @@ section { padding: 4.5rem 2rem; max-width: 1200px; margin: 0 auto; }
 .project-title { font-size: 1rem; font-weight: 700; margin-bottom: 0.6rem; }
 .project-desc { font-size: 0.8rem; color: #8f8f8f; line-height: 1.7; }
 
+.stimo-carousel {
+  margin-top: 0.7rem;
+  border: 1px solid #2d2d39;
+  background: #0f0f14;
+  padding: 0.35rem;
+}
+.stimo-carousel img {
+  width: 100%;
+  height: 180px;
+  object-fit: cover;
+  display: block;
+}
+.stimo-dots {
+  display: flex;
+  justify-content: center;
+  gap: 0.35rem;
+  padding-top: 0.4rem;
+}
+.stimo-dots .dot {
+  width: 6px;
+  height: 6px;
+  border-radius: 999px;
+  background: #3b3b49;
+}
+.stimo-dots .dot.active {
+  background: var(--accent);
+}
+
 .edu-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 1px; background: var(--border); border: 1px solid var(--border); }
 .edu-card { background: var(--surface); padding: 1.5rem; }
 .edu-card:hover { background: var(--surface2); }
