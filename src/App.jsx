@@ -211,7 +211,7 @@ function App() {
           </div>
           <div className="exp-company">Farmacápsulas · Barranquilla, Colombia · Contrato término fijo</div>
           <figure className="exp-photo">
-            <img src="/img/experience/farmacapsulas-plc.jpg" alt="Tablero de automatización industrial en Farmacápsulas" loading="lazy" />
+            <img src={`${import.meta.env.BASE_URL}img/experience/farmacapsulas-plc.jpg`} alt="Tablero de automatización industrial en Farmacápsulas" loading="lazy" />
             <figcaption>Implementación y pruebas de automatización PLC/HMI en línea de producción.</figcaption>
           </figure>
           <ul className="exp-bullets">
