@@ -70,6 +70,11 @@ const stimoImages = [
   assetUrl('img/stimo/stimo-6.jpg'),
 ]
 
+const launchImages = [
+  assetUrl('img/projects/launchassistpy-visual.jpg'),
+  assetUrl('img/projects/launchassistpy-gesture.jpg'),
+]
+
 const certificates = [
   { title: 'CV - Mateo David Castro Villegas', file: assetUrl('certificados/CV_Mateo_David_Castro_Villegas.pdf') },
   { title: 'DNDA-145 Software Autotrigger', file: assetUrl('certificados/DNDA-145_Software_Autotrigger_Registro.pdf') },
@@ -80,16 +85,24 @@ const certificates = [
 
 function App() {
   const [stimoIndex, setStimoIndex] = useState(0)
+  const [launchIndex, setLaunchIndex] = useState(0)
   const [stimoExpanded, setStimoExpanded] = useState(false)
   const [autotriggerExpanded, setAutotriggerExpanded] = useState(false)
   const [launchExpanded, setLaunchExpanded] = useState(false)
 
   useEffect(() => {
-    const timer = setInterval(() => {
+    const stimoTimer = setInterval(() => {
       setStimoIndex((prev) => (prev + 1) % stimoImages.length)
     }, 2500)
 
-    return () => clearInterval(timer)
+    const launchTimer = setInterval(() => {
+      setLaunchIndex((prev) => (prev + 1) % launchImages.length)
+    }, 2800)
+
+    return () => {
+      clearInterval(stimoTimer)
+      clearInterval(launchTimer)
+    }
   }, [])
 
   useEffect(() => {
@@ -108,6 +121,8 @@ function App() {
 
   const nextStimo = () => setStimoIndex((prev) => (prev + 1) % stimoImages.length)
   const prevStimo = () => setStimoIndex((prev) => (prev - 1 + stimoImages.length) % stimoImages.length)
+  const nextLaunch = () => setLaunchIndex((prev) => (prev + 1) % launchImages.length)
+  const prevLaunch = () => setLaunchIndex((prev) => (prev - 1 + launchImages.length) % launchImages.length)
 
   return (
     <>
@@ -245,7 +260,17 @@ function App() {
             <div className="project-title">LaunchAssistPy</div>
             <div className="project-desc">Interfaz inteligente de visión artificial que traduce gestos de manos en comandos de control para el lanzador.</div>
             <div className="stimo-carousel">
-              <img src={`${import.meta.env.BASE_URL}img/projects/launchassistpy-visual.jpg`} alt="Diagrama visual de LaunchAssistPy con cámara, detección de manos y lanzador" loading="lazy" />
+              <img src={launchImages[launchIndex]} alt={`LaunchAssistPy evidencia ${launchIndex + 1}`} loading="lazy" />
+              <div className="stimo-dots">
+                {launchImages.map((_, i) => (
+                  <button
+                    key={i}
+                    className={i === launchIndex ? 'dot active' : 'dot'}
+                    onClick={(e) => { e.stopPropagation(); setLaunchIndex(i) }}
+                    aria-label={`Ir a imagen ${i + 1}`}
+                  ></button>
+                ))}
+              </div>
             </div>
             <small className="stimo-hint">Toca este bloque para abrir el caso completo</small>
           </div>
@@ -332,8 +357,21 @@ function App() {
               <span>Python 3</span><span>OpenCV</span><span>MediaPipe</span><span>NumPy</span><span>pySerial</span><span>Logging</span>
             </div>
 
-            <div className="stimo-gallery-large single">
-              <img src={`${import.meta.env.BASE_URL}img/projects/launchassistpy-visual.jpg`} alt="Arquitectura visual de LaunchAssistPy" />
+            <div className="stimo-gallery-large">
+              <button onClick={prevLaunch} aria-label="Imagen anterior">‹</button>
+              <img src={launchImages[launchIndex]} alt={`LaunchAssistPy evidencia ${launchIndex + 1}`} />
+              <button onClick={nextLaunch} aria-label="Siguiente imagen">›</button>
+            </div>
+
+            <div className="stimo-dots">
+              {launchImages.map((_, i) => (
+                <button
+                  key={i}
+                  className={i === launchIndex ? 'dot active' : 'dot'}
+                  onClick={() => setLaunchIndex(i)}
+                  aria-label={`Ir a imagen ${i + 1}`}
+                ></button>
+              ))}
             </div>
           </article>
         </div>
