@@ -228,8 +228,8 @@ function App() {
           <div className="project-card reveal stimo-card" onClick={() => setStimoExpanded(true)}>
             <div className="project-num">03</div>
             <div className="project-badge">DNDA</div>
-            <div className="project-title">STIMO (Rehabilitación de rodilla)</div>
-            <div className="project-desc">Dispositivo mecatrónico posoperatorio que integra termoterapia, TENS/EMS y monitoreo objetivo del ángulo de flexión en un solo sistema.</div>
+            <div className="project-title">STIMO — Rehabilitación inteligente de rodilla</div>
+            <div className="project-desc">Dispositivo mecatrónico posoperatorio que integra termoterapia, TENS/EMS y monitoreo del ángulo de flexión en tiempo real.</div>
             <div className="stimo-carousel">
               <img src={stimoImages[stimoIndex]} alt={`STIMO evidencia ${stimoIndex + 1}`} />
               <div className="stimo-dots">
@@ -253,24 +253,36 @@ function App() {
         <div className="stimo-modal" onClick={() => setStimoExpanded(false)}>
           <article className="stimo-modal-card" onClick={(e) => e.stopPropagation()}>
             <div className="stimo-modal-top">
-              <h3>STIMO — caso completo</h3>
+              <h3>STIMO — Rehabilitación inteligente de rodilla</h3>
               <button className="stimo-close" onClick={() => setStimoExpanded(false)}>✕</button>
             </div>
 
             <p>
-              STIMO es un dispositivo mecatrónico de rehabilitación posoperatoria de rodilla que integra
-              termoterapia, electroestimulación TENS/EMS y monitoreo objetivo del ángulo de flexión en tiempo real.
-              La arquitectura usa ESP32, 2×MPU6050 para movimiento, MAX6675 para temperatura, interfaz web y
-              almacenamiento automático de datos.
+              Dispositivo mecatrónico de rehabilitación posoperatoria que integra termoterapia,
+              electroestimulación TENS/EMS y monitoreo del ángulo de flexión en tiempo real.
+              Desarrollado con ESP32, sensores inerciales, control térmico e interfaz web,
+              validado con pacientes y profesionales de salud.
             </p>
 
+            <h4 className="stimo-subtitle">Datos clave</h4>
             <div className="stimo-kpis">
-              <span>Rango térmico clínico: 42 °C a 50 °C (objetivo 45 °C ± 1 °C)</span>
-              <span>Tiempo de estabilización térmica: 15–20 min</span>
-              <span>Electroestimulación configurable: 2–100 Hz · 50–500 μs · 0–100%</span>
-              <span>Ganancia media de flexión: +9.32° por participante</span>
-              <span>Validación funcional: 3 participantes + fisioterapeutas + médica especialista</span>
-              <span>Resultado: sinergia terapéutica real calor + TENS/EMS y alta satisfacción de uso</span>
+              <span>42–50 °C de rango térmico clínico</span>
+              <span>15–20 min de estabilización térmica</span>
+              <span>+9.32° de ganancia media de flexión</span>
+              <span>3 pacientes en validación funcional</span>
+            </div>
+
+            <h4 className="stimo-subtitle">Tecnologías</h4>
+            <div className="stimo-tech">
+              <span>ESP32</span><span>MPU6050</span><span>MAX6675</span><span>TENS/EMS</span><span>Web UI</span><span>Registro de datos</span>
+            </div>
+
+            <h4 className="stimo-subtitle">Mi aporte</h4>
+            <div className="stimo-kpis">
+              <span>Diseño del sistema mecatrónico y arquitectura funcional</span>
+              <span>Integración electrónica y configuración terapéutica (calor + TENS/EMS)</span>
+              <span>Implementación de monitoreo de flexión y registro de datos</span>
+              <span>Pruebas piloto, ajustes técnicos y soporte en validación clínica</span>
             </div>
 
             <div className="stimo-gallery-large">

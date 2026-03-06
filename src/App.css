@@ -445,8 +445,18 @@ section { padding: 4.5rem 2rem; max-width: 1200px; margin: 0 auto; }
   cursor: pointer;
 }
 .stimo-close:hover { border-color: var(--accent); color: var(--accent); }
+.stimo-subtitle {
+  font-family: 'DM Mono', monospace;
+  font-size: 0.74rem;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  color: #9debd0;
+  margin-top: 0.9rem;
+  margin-bottom: 0.45rem;
+}
+
 .stimo-kpis {
-  margin-top: 0.7rem;
+  margin-top: 0.2rem;
   display: grid;
   grid-template-columns: repeat(auto-fit, minmax(230px, 1fr));
   gap: 0.4rem;
@@ -457,6 +467,21 @@ section { padding: 4.5rem 2rem; max-width: 1200px; margin: 0 auto; }
   color: #91f3d0;
   font-size: 0.72rem;
   padding: 0.45rem 0.55rem;
+}
+
+.stimo-tech {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.35rem;
+}
+.stimo-tech span {
+  border: 1px solid rgba(0, 255, 136, 0.28);
+  background: rgba(0, 255, 136, 0.08);
+  color: #b9ffe5;
+  font-size: 0.68rem;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  padding: 0.25rem 0.5rem;
 }
 .stimo-gallery-large {
   margin-top: 0.8rem;
