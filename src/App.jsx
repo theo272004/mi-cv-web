@@ -239,6 +239,20 @@ function App() {
             <li>Cronogramas de mantenimiento preventivo/correctivo que redujeron tiempos de inactividad en producción crítica.</li>
           </ul>
         </div>
+
+        <div className="exp-panel reveal">
+          <div className="exp-top-row">
+            <div className="exp-role">Co-founder · Datafacta</div>
+            <div className="exp-date">Producto en producción</div>
+          </div>
+          <div className="exp-company">Datafacta · Sistema de Gestión de Facturas v2.5</div>
+          <ul className="exp-bullets">
+            <li>Co-lideré el diseño y desarrollo de una plataforma de facturación con OCR avanzado, IA y validación antifraude para operación empresarial.</li>
+            <li>Implementé pipeline inteligente: captura multiformato (imágenes, PDF, ZIP), extracción de datos e ítems, score de confianza y validación cruzada de totales.</li>
+            <li>Integré detección de duplicados por hash SHA-256 y verificación de comprobantes bancarios contra cuentas autorizadas para prevención de fraude.</li>
+            <li>Arquitectura técnica: Python, Flask, OpenCV, MediaPipe, OCR/Tesseract, SQLite y servicios API para carga, historial y exportación.</li>
+          </ul>
+        </div>
       </section>
 
       <section id="projects" className="section-bordered">
