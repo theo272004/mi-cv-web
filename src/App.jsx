@@ -210,6 +210,10 @@ function App() {
             <div className="exp-date">Oct 2024 – Abr 2025</div>
           </div>
           <div className="exp-company">Farmacápsulas · Barranquilla, Colombia · Contrato término fijo</div>
+          <figure className="exp-photo">
+            <img src="/img/experience/farmacapsulas-plc.jpg" alt="Tablero de automatización industrial en Farmacápsulas" loading="lazy" />
+            <figcaption>Implementación y pruebas de automatización PLC/HMI en línea de producción.</figcaption>
+          </figure>
           <ul className="exp-bullets">
             <li>Automatización end-to-end del sistema completo de fabricación de Superflux — lógica PLC, integración HMI y puesta en marcha.</li>
             <li>Enlace técnico entre equipos internos y representantes internacionales (Syntegon, Bosch) para instalación de maquinaria nueva.</li>
