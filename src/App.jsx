@@ -232,6 +232,9 @@ function App() {
             <div className="project-badge">DNDA</div>
             <div className="project-title">Software Autotrigger</div>
             <div className="project-desc">Firmware en ESP32 que convierte comandos seriales en movimiento físico del lanzador y activación de disparo.</div>
+            <figure className="project-image">
+              <img src={`${import.meta.env.BASE_URL}img/projects/autotrigger-visual.jpg`} alt="Diagrama funcional de Autotrigger con ESP32 y control del lanzador" loading="lazy" />
+            </figure>
             <ul className="project-points">
               <li>Controla base horizontal (motor DC + puente H), elevación (servo) y relé de disparo.</li>
               <li>Interpreta comandos como <code>B90Y75F1</code> para ejecutar movimiento + acción en tiempo real.</li>
