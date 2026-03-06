@@ -80,6 +80,7 @@ const certificates = [
 
 function App() {
   const [stimoIndex, setStimoIndex] = useState(0)
+  const [stimoExpanded, setStimoExpanded] = useState(false)
 
   useEffect(() => {
     const timer = setInterval(() => {
@@ -102,6 +103,9 @@ function App() {
     document.querySelectorAll('.reveal').forEach((el) => observer.observe(el))
     return () => observer.disconnect()
   }, [])
+
+  const nextStimo = () => setStimoIndex((prev) => (prev + 1) % stimoImages.length)
+  const prevStimo = () => setStimoIndex((prev) => (prev - 1 + stimoImages.length) % stimoImages.length)
 
   return (
     <>
@@ -213,21 +217,51 @@ function App() {
         <div className="projects-grid">
           <div className="project-card reveal"><div className="project-num">01</div><div className="project-badge">DNDA</div><div className="project-title">Software Autotrigger</div><div className="project-desc">Automatización de tareas técnicas repetitivas en entorno industrial.</div></div>
           <div className="project-card reveal"><div className="project-num">02</div><div className="project-badge">DNDA</div><div className="project-title">LaunchAssistPy</div><div className="project-desc">Asistente para flujos operativos y soporte en procesos técnicos.</div></div>
-          <div className="project-card reveal">
+          <div className="project-card reveal stimo-card">
             <div className="project-num">03</div>
             <div className="project-badge">DNDA</div>
             <div className="project-title">STIMO (Visión + IA)</div>
-            <div className="project-desc">Inspección visual con IA para acelerar análisis y decisiones en piloto.</div>
-            <div className="stimo-carousel">
-              <img src={stimoImages[stimoIndex]} alt={`STIMO evidencia ${stimoIndex + 1}`} />
-              <div className="stimo-dots">
-                {stimoImages.map((_, i) => (
-                  <span key={i} className={i === stimoIndex ? 'dot active' : 'dot'}></span>
-                ))}
-              </div>
-            </div>
+            <div className="project-desc">Dispositivo mecatrónico para rehabilitación posoperatoria de rodilla con termoterapia, TENS/EMS y monitoreo del ángulo de flexión.</div>
+            <button className="expand-btn" onClick={() => setStimoExpanded((v) => !v)}>
+              {stimoExpanded ? 'Ocultar caso completo' : 'Ver caso completo + galería'}
+            </button>
           </div>
         </div>
+
+        {stimoExpanded && (
+          <article className="stimo-expanded reveal visible">
+            <h3>STIMO — caso completo</h3>
+            <p>
+              STIMO integra en un solo sistema <strong>termoterapia</strong>, <strong>electroestimulación TENS/EMS</strong> y
+              <strong> monitoreo objetivo del ángulo de flexión</strong>, con arquitectura basada en ESP32, sensores
+              2×MPU6050 y MAX6675, interfaz web y registro automático de datos.
+            </p>
+
+            <div className="stimo-kpis">
+              <span>42–50 °C (objetivo 45 °C ± 1 °C)</span>
+              <span>2–100 Hz · 50–500 μs · 0–100% intensidad</span>
+              <span>Ganancia media de flexión: +9.32°</span>
+              <span>Validación en Barranquilla con 3 participantes</span>
+            </div>
+
+            <div className="stimo-gallery-large">
+              <button onClick={prevStimo} aria-label="Imagen anterior">‹</button>
+              <img src={stimoImages[stimoIndex]} alt={`STIMO evidencia ${stimoIndex + 1}`} />
+              <button onClick={nextStimo} aria-label="Siguiente imagen">›</button>
+            </div>
+
+            <div className="stimo-dots">
+              {stimoImages.map((_, i) => (
+                <button
+                  key={i}
+                  className={i === stimoIndex ? 'dot active' : 'dot'}
+                  onClick={() => setStimoIndex(i)}
+                  aria-label={`Ir a imagen ${i + 1}`}
+                ></button>
+              ))}
+            </div>
+          </article>
+        )}
       </section>
 
       <section id="education" className="section-bordered">

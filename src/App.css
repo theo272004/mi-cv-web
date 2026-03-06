@@ -371,33 +371,85 @@ section { padding: 4.5rem 2rem; max-width: 1200px; margin: 0 auto; }
 .project-title { font-size: 1rem; font-weight: 700; margin-bottom: 0.6rem; }
 .project-desc { font-size: 0.8rem; color: #8f8f8f; line-height: 1.7; }
 
-.stimo-carousel {
-  margin-top: 0.7rem;
-  border: 1px solid #2d2d39;
-  background: #0f0f14;
-  padding: 0.35rem;
+.expand-btn {
+  margin-top: 0.8rem;
+  border: 1px solid #2f2f3b;
+  background: #12121a;
+  color: #b8f7df;
+  font-size: 0.68rem;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  padding: 0.45rem 0.6rem;
+  cursor: pointer;
 }
-.stimo-carousel img {
+.expand-btn:hover { border-color: var(--accent); color: var(--accent); }
+
+.stimo-expanded {
+  margin-top: 0.8rem;
+  border: 1px solid #2d2d39;
+  background: #101017;
+  padding: 1rem;
+}
+.stimo-expanded h3 {
+  font-family: 'Bebas Neue', sans-serif;
+  font-size: 1.6rem;
+  letter-spacing: 0.06em;
+  margin-bottom: 0.4rem;
+}
+.stimo-expanded p {
+  color: #aeb0be;
+  font-size: 0.85rem;
+  line-height: 1.8;
+}
+.stimo-kpis {
+  margin-top: 0.7rem;
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(230px, 1fr));
+  gap: 0.4rem;
+}
+.stimo-kpis span {
+  border: 1px solid #2f2f3a;
+  background: #171720;
+  color: #91f3d0;
+  font-size: 0.72rem;
+  padding: 0.45rem 0.55rem;
+}
+.stimo-gallery-large {
+  margin-top: 0.8rem;
+  display: grid;
+  grid-template-columns: 42px 1fr 42px;
+  gap: 0.4rem;
+  align-items: center;
+}
+.stimo-gallery-large button {
+  height: 220px;
+  border: 1px solid #2f2f3b;
+  background: #16161e;
+  color: var(--accent);
+  font-size: 1.5rem;
+  cursor: pointer;
+}
+.stimo-gallery-large img {
   width: 100%;
-  height: 180px;
+  height: 220px;
   object-fit: cover;
-  display: block;
+  border: 1px solid #2f2f3b;
 }
 .stimo-dots {
   display: flex;
   justify-content: center;
   gap: 0.35rem;
-  padding-top: 0.4rem;
+  padding-top: 0.5rem;
 }
 .stimo-dots .dot {
-  width: 6px;
-  height: 6px;
+  width: 8px;
+  height: 8px;
   border-radius: 999px;
   background: #3b3b49;
+  border: none;
+  padding: 0;
 }
-.stimo-dots .dot.active {
-  background: var(--accent);
-}
+.stimo-dots .dot.active { background: var(--accent); }
 
 .edu-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 1px; background: var(--border); border: 1px solid var(--border); }
 .edu-card { background: var(--surface); padding: 1.5rem; }
