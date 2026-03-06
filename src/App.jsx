@@ -25,6 +25,16 @@ const skills = [
     tags: ['PLCs', 'HMI', 'Control de Procesos', 'Mecatrónica', 'SolidWorks'],
   },
   {
+    icon: '🔌',
+    name: 'Electrónica & IoT',
+    tags: ['Electrónica analógica/digital', 'Microcontroladores', 'IoT', 'Sensórica', 'Integración HW/SW'],
+  },
+  {
+    icon: '🛠️',
+    name: 'Mecánica aplicada',
+    tags: ['Diagnóstico mecánico', 'Montaje y ajuste', 'Mantenimiento mecánico', 'Lectura de planos'],
+  },
+  {
     icon: '👁️',
     name: 'Visión Artificial',
     tags: ['Computer Vision', 'IA Aplicada', 'Inspección Visual'],
@@ -49,6 +59,25 @@ const orbitSkills = [
   { label: 'React', radius: 300, speed: 32, delay: 2.5 },
   { label: 'Visión IA', radius: 300, speed: 36, delay: 5 },
   { label: 'SolidWorks', radius: 300, speed: 38, delay: 7.5 },
+]
+
+const engineeringCore = [
+  {
+    title: 'Electrónica',
+    items: ['Electrónica analógica y digital', 'Diagnóstico de tarjetas y señales', 'Instrumentación básica'],
+  },
+  {
+    title: 'Microcontroladores',
+    items: ['Programación de microcontroladores', 'Lectura de sensores', 'Control de actuadores'],
+  },
+  {
+    title: 'IoT',
+    items: ['Integración hardware/software', 'Comunicación con APIs', 'Monitoreo y telemetría'],
+  },
+  {
+    title: 'Mecánica aplicada',
+    items: ['Diagnóstico mecánico', 'Montaje y ajuste', 'Mantenimiento correctivo/preventivo'],
+  },
 ]
 
 const certificates = [
@@ -156,6 +185,20 @@ function App() {
                 {skill.tags.map((tag) => <span className="tag" key={tag}>{tag}</span>)}
               </div>
             </div>
+          ))}
+        </div>
+
+        <div className="section-header reveal subheader"><span className="section-num">01B</span><h2 className="section-title">Base de ingeniería</h2><div className="section-line"></div></div>
+        <div className="core-grid">
+          {engineeringCore.map((block) => (
+            <article key={block.title} className="core-card reveal">
+              <h3>{block.title}</h3>
+              <ul>
+                {block.items.map((item) => (
+                  <li key={item}>{item}</li>
+                ))}
+              </ul>
+            </article>
           ))}
         </div>
       </section>
