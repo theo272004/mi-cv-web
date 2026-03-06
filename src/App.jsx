@@ -246,6 +246,10 @@ function App() {
             <div className="exp-date">Producto en producción</div>
           </div>
           <div className="exp-company">Datafacta · Solución para PyMEs (Sistema de Gestión de Facturas v2.5)</div>
+          <figure className="exp-photo">
+            <img src={`${import.meta.env.BASE_URL}img/experience/datafacta-team.jpg`} alt="Equipo Datafacta en evento de emprendimiento" loading="lazy" />
+            <figcaption>Presentación de Datafacta como solución tecnológica para MiPyMEs.</figcaption>
+          </figure>
           <ul className="exp-bullets">
             <li>Co-fundé una plataforma de escaneo y estructuración de documentos financieros para micro, pequeñas y medianas empresas (MiPyMEs) en Colombia.</li>
             <li>Atacamos procesos manuales sin trazabilidad (papel/digitalización manual), reduciendo reprocesos, tiempos operativos y fricción en la toma de decisiones.</li>
