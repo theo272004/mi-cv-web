@@ -227,8 +227,28 @@ function App() {
       <section id="projects" className="section-bordered">
         <div className="section-header reveal"><span className="section-num">03</span><h2 className="section-title">Proyectos</h2><div className="section-line"></div></div>
         <div className="projects-grid">
-          <div className="project-card reveal"><div className="project-num">01</div><div className="project-badge">DNDA</div><div className="project-title">Software Autotrigger</div><div className="project-desc">Automatización de tareas técnicas repetitivas en entorno industrial.</div></div>
-          <div className="project-card reveal"><div className="project-num">02</div><div className="project-badge">DNDA</div><div className="project-title">LaunchAssistPy</div><div className="project-desc">Asistente para flujos operativos y soporte en procesos técnicos.</div></div>
+          <div className="project-card reveal">
+            <div className="project-num">01</div>
+            <div className="project-badge">DNDA</div>
+            <div className="project-title">Software Autotrigger</div>
+            <div className="project-desc">Firmware en ESP32 que convierte comandos seriales en movimiento físico del lanzador y activación de disparo.</div>
+            <ul className="project-points">
+              <li>Controla base horizontal (motor DC + puente H), elevación (servo) y relé de disparo.</li>
+              <li>Interpreta comandos como <code>B90Y75F1</code> para ejecutar movimiento + acción en tiempo real.</li>
+              <li>Stack: C++ (Arduino IDE), PWM ESP32, ESP32Servo, comunicación serial USB.</li>
+            </ul>
+          </div>
+          <div className="project-card reveal">
+            <div className="project-num">02</div>
+            <div className="project-badge">DNDA</div>
+            <div className="project-title">LaunchAssistPy</div>
+            <div className="project-desc">Interfaz inteligente de visión artificial que traduce gestos de manos en comandos de control para el lanzador.</div>
+            <ul className="project-points">
+              <li>Pipeline: cámara → detección de manos → coordenadas/ángulos → comandos seriales al ESP32.</li>
+              <li>Detecta gesto de manos abiertas para activar disparo y permite control sin joystick.</li>
+              <li>Stack: Python 3, OpenCV, MediaPipe, NumPy, pySerial, logging.</li>
+            </ul>
+          </div>
           <div className="project-card reveal stimo-card" onClick={() => setStimoExpanded(true)}>
             <div className="project-num">03</div>
             <div className="project-badge">DNDA</div>
