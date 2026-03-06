@@ -85,6 +85,10 @@ nav {
   color: var(--accent);
   background: rgba(0, 229, 160, 0.08);
 }
+.nav-social svg {
+  width: 15px;
+  height: 15px;
+}
 
 .hero {
   min-height: 100vh;
@@ -215,6 +219,10 @@ nav {
   border-color: var(--accent2);
   color: var(--accent2);
   transform: translateY(-2px);
+}
+.btn-icon svg {
+  width: 17px;
+  height: 17px;
 }
 
 .hero-right {

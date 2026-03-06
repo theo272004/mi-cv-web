@@ -119,8 +119,12 @@ function App() {
           <li><a href="#contact">Contacto</a></li>
         </ul>
         <div className="nav-social">
-          <a href="https://github.com/theo272004" target="_blank" rel="noreferrer">⌥</a>
-          <a href="https://www.linkedin.com/in/mateo-castro-villegas-84b738340" target="_blank" rel="noreferrer">in</a>
+          <a href="https://github.com/theo272004" target="_blank" rel="noreferrer" aria-label="GitHub" title="GitHub">
+            <svg viewBox="0 0 24 24" aria-hidden="true"><path fill="currentColor" d="M12 2a10 10 0 0 0-3.162 19.49c.5.092.682-.217.682-.48c0-.236-.009-.865-.014-1.697c-2.776.603-3.362-1.338-3.362-1.338c-.455-1.157-1.11-1.466-1.11-1.466c-.908-.62.069-.607.069-.607c1.004.07 1.532 1.032 1.532 1.032c.892 1.53 2.341 1.088 2.91.832c.092-.646.35-1.088.636-1.338c-2.217-.252-4.549-1.108-4.549-4.933c0-1.09.39-1.982 1.029-2.68c-.103-.252-.446-1.268.097-2.643c0 0 .84-.269 2.75 1.024A9.56 9.56 0 0 1 12 6.844a9.56 9.56 0 0 1 2.504.337c1.909-1.293 2.748-1.024 2.748-1.024c.544 1.375.201 2.391.098 2.643c.64.698 1.028 1.59 1.028 2.68c0 3.834-2.336 4.678-4.56 4.925c.359.31.678.923.678 1.86c0 1.343-.012 2.427-.012 2.757c0 .266.18.576.688.479A10 10 0 0 0 12 2"/></svg>
+          </a>
+          <a href="https://www.linkedin.com/in/mateo-castro-villegas-84b738340" target="_blank" rel="noreferrer" aria-label="LinkedIn" title="LinkedIn">
+            <svg viewBox="0 0 24 24" aria-hidden="true"><path fill="currentColor" d="M19 3A2 2 0 0 1 21 5v14a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2zM8.34 18.34V10.8H5.83v7.54zM7.09 9.77a1.45 1.45 0 1 0 0-2.9a1.45 1.45 0 0 0 0 2.9m11.25 8.57v-4.12c0-2.21-1.18-3.24-2.76-3.24c-1.27 0-1.84.7-2.16 1.2v-1.03h-2.51c.03.68 0 7.19 0 7.19h2.51v-4.02c0-.21.02-.42.08-.57c.17-.42.55-.86 1.2-.86c.85 0 1.19.65 1.19 1.6v3.85z"/></svg>
+          </a>
         </div>
       </nav>
 
@@ -143,8 +147,12 @@ function App() {
           <div className="hero-cta">
             <a href="#contact" className="btn btn-primary">Contactar ↗</a>
             <a href="#projects" className="btn btn-ghost">Ver proyectos</a>
-            <a href="https://github.com/theo272004" target="_blank" rel="noreferrer" className="btn btn-icon">⌥</a>
-            <a href="https://www.linkedin.com/in/mateo-castro-villegas-84b738340" target="_blank" rel="noreferrer" className="btn btn-icon">in</a>
+            <a href="https://github.com/theo272004" target="_blank" rel="noreferrer" className="btn btn-icon" aria-label="GitHub" title="GitHub">
+              <svg viewBox="0 0 24 24" aria-hidden="true"><path fill="currentColor" d="M12 2a10 10 0 0 0-3.162 19.49c.5.092.682-.217.682-.48c0-.236-.009-.865-.014-1.697c-2.776.603-3.362-1.338-3.362-1.338c-.455-1.157-1.11-1.466-1.11-1.466c-.908-.62.069-.607.069-.607c1.004.07 1.532 1.032 1.532 1.032c.892 1.53 2.341 1.088 2.91.832c.092-.646.35-1.088.636-1.338c-2.217-.252-4.549-1.108-4.549-4.933c0-1.09.39-1.982 1.029-2.68c-.103-.252-.446-1.268.097-2.643c0 0 .84-.269 2.75 1.024A9.56 9.56 0 0 1 12 6.844a9.56 9.56 0 0 1 2.504.337c1.909-1.293 2.748-1.024 2.748-1.024c.544 1.375.201 2.391.098 2.643c.64.698 1.028 1.59 1.028 2.68c0 3.834-2.336 4.678-4.56 4.925c.359.31.678.923.678 1.86c0 1.343-.012 2.427-.012 2.757c0 .266.18.576.688.479A10 10 0 0 0 12 2"/></svg>
+            </a>
+            <a href="https://www.linkedin.com/in/mateo-castro-villegas-84b738340" target="_blank" rel="noreferrer" className="btn btn-icon" aria-label="LinkedIn" title="LinkedIn">
+              <svg viewBox="0 0 24 24" aria-hidden="true"><path fill="currentColor" d="M19 3A2 2 0 0 1 21 5v14a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2zM8.34 18.34V10.8H5.83v7.54zM7.09 9.77a1.45 1.45 0 1 0 0-2.9a1.45 1.45 0 0 0 0 2.9m11.25 8.57v-4.12c0-2.21-1.18-3.24-2.76-3.24c-1.27 0-1.84.7-2.16 1.2v-1.03h-2.51c.03.68 0 7.19 0 7.19h2.51v-4.02c0-.21.02-.42.08-.57c.17-.42.55-.86 1.2-.86c.85 0 1.19.65 1.19 1.6v3.85z"/></svg>
+            </a>
           </div>
         </div>
 
