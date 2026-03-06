@@ -247,10 +247,10 @@ function App() {
           </div>
           <div className="exp-company">Datafacta · Solución para PyMEs (Sistema de Gestión de Facturas v2.5)</div>
           <ul className="exp-bullets">
-            <li>Co-lideré el diseño y desarrollo de una solución para PyMEs enfocada en digitalizar y automatizar la gestión de facturas con OCR avanzado, IA y validación antifraude.</li>
-            <li>Implementé pipeline inteligente: captura multiformato (imágenes, PDF, ZIP), extracción de datos e ítems, score de confianza y validación cruzada de totales.</li>
-            <li>Integré detección de duplicados por hash SHA-256 y verificación de comprobantes bancarios contra cuentas autorizadas para prevención de fraude.</li>
-            <li>Arquitectura técnica: Python, Flask, OpenCV, MediaPipe, OCR/Tesseract, SQLite y servicios API para carga, historial y exportación.</li>
+            <li>Co-fundé una plataforma de escaneo y estructuración de documentos financieros para micro, pequeñas y medianas empresas (MiPyMEs) en Colombia.</li>
+            <li>Atacamos procesos manuales sin trazabilidad (papel/digitalización manual), reduciendo reprocesos, tiempos operativos y fricción en la toma de decisiones.</li>
+            <li>Diseñé el flujo completo de diagnóstico, validación y estructuración automática de facturas/comprobantes, sin infraestructura compleja ni intervención manual.</li>
+            <li>Implementé procesamiento en tiempo real con exportación directa a Excel/sistemas contables y panel de control analítico para seguimiento operativo.</li>
           </ul>
         </div>
       </section>
