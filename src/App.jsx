@@ -243,6 +243,9 @@ function App() {
             <div className="project-badge">DNDA</div>
             <div className="project-title">LaunchAssistPy</div>
             <div className="project-desc">Interfaz inteligente de visión artificial que traduce gestos de manos en comandos de control para el lanzador.</div>
+            <figure className="project-image">
+              <img src={`${import.meta.env.BASE_URL}img/projects/launchassistpy-visual.jpg`} alt="Diagrama visual de LaunchAssistPy con cámara, detección de manos y lanzador" loading="lazy" />
+            </figure>
             <ul className="project-points">
               <li>Pipeline: cámara → detección de manos → coordenadas/ángulos → comandos seriales al ESP32.</li>
               <li>Detecta gesto de manos abiertas para activar disparo y permite control sin joystick.</li>
