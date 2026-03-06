@@ -81,6 +81,8 @@ const certificates = [
 function App() {
   const [stimoIndex, setStimoIndex] = useState(0)
   const [stimoExpanded, setStimoExpanded] = useState(false)
+  const [autotriggerExpanded, setAutotriggerExpanded] = useState(false)
+  const [launchExpanded, setLaunchExpanded] = useState(false)
 
   useEffect(() => {
     const timer = setInterval(() => {
@@ -227,33 +229,25 @@ function App() {
       <section id="projects" className="section-bordered">
         <div className="section-header reveal"><span className="section-num">03</span><h2 className="section-title">Proyectos</h2><div className="section-line"></div></div>
         <div className="projects-grid">
-          <div className="project-card reveal">
+          <div className="project-card reveal stimo-card" onClick={() => setAutotriggerExpanded(true)}>
             <div className="project-num">01</div>
             <div className="project-badge">DNDA</div>
             <div className="project-title">Software Autotrigger</div>
             <div className="project-desc">Firmware en ESP32 que convierte comandos seriales en movimiento físico del lanzador y activación de disparo.</div>
-            <figure className="project-image">
+            <div className="stimo-carousel">
               <img src={`${import.meta.env.BASE_URL}img/projects/autotrigger-visual.jpg`} alt="Diagrama funcional de Autotrigger con ESP32 y control del lanzador" loading="lazy" />
-            </figure>
-            <ul className="project-points">
-              <li>Controla base horizontal (motor DC + puente H), elevación (servo) y relé de disparo.</li>
-              <li>Interpreta comandos como <code>B90Y75F1</code> para ejecutar movimiento + acción en tiempo real.</li>
-              <li>Stack: C++ (Arduino IDE), PWM ESP32, ESP32Servo, comunicación serial USB.</li>
-            </ul>
+            </div>
+            <small className="stimo-hint">Toca este bloque para abrir el caso completo</small>
           </div>
-          <div className="project-card reveal">
+          <div className="project-card reveal stimo-card" onClick={() => setLaunchExpanded(true)}>
             <div className="project-num">02</div>
             <div className="project-badge">DNDA</div>
             <div className="project-title">LaunchAssistPy</div>
             <div className="project-desc">Interfaz inteligente de visión artificial que traduce gestos de manos en comandos de control para el lanzador.</div>
-            <figure className="project-image">
+            <div className="stimo-carousel">
               <img src={`${import.meta.env.BASE_URL}img/projects/launchassistpy-visual.jpg`} alt="Diagrama visual de LaunchAssistPy con cámara, detección de manos y lanzador" loading="lazy" />
-            </figure>
-            <ul className="project-points">
-              <li>Pipeline: cámara → detección de manos → coordenadas/ángulos → comandos seriales al ESP32.</li>
-              <li>Detecta gesto de manos abiertas para activar disparo y permite control sin joystick.</li>
-              <li>Stack: Python 3, OpenCV, MediaPipe, NumPy, pySerial, logging.</li>
-            </ul>
+            </div>
+            <small className="stimo-hint">Toca este bloque para abrir el caso completo</small>
           </div>
           <div className="project-card reveal stimo-card" onClick={() => setStimoExpanded(true)}>
             <div className="project-num">03</div>
@@ -278,6 +272,72 @@ function App() {
         </div>
 
       </section>
+
+      {autotriggerExpanded && (
+        <div className="stimo-modal" onClick={() => setAutotriggerExpanded(false)}>
+          <article className="stimo-modal-card" onClick={(e) => e.stopPropagation()}>
+            <div className="stimo-modal-top">
+              <h3>Software Autotrigger</h3>
+              <button className="stimo-close" onClick={() => setAutotriggerExpanded(false)}>✕</button>
+            </div>
+
+            <p>
+              Firmware para ESP32 que recibe comandos seriales del sistema de visión y los convierte
+              en movimiento real del lanzador (base, elevación y disparo).
+            </p>
+
+            <h4 className="stimo-subtitle">Qué controla</h4>
+            <div className="stimo-kpis">
+              <span>Motor DC + puente H para movimiento horizontal</span>
+              <span>Servomotor para elevación del cañón</span>
+              <span>Relé para activar disparo</span>
+              <span>Interpretación de tramas como B90Y75F1</span>
+            </div>
+
+            <h4 className="stimo-subtitle">Tecnologías</h4>
+            <div className="stimo-tech">
+              <span>C++</span><span>Arduino IDE</span><span>ESP32Servo</span><span>PWM ESP32</span><span>Serial USB</span>
+            </div>
+
+            <div className="stimo-gallery-large single">
+              <img src={`${import.meta.env.BASE_URL}img/projects/autotrigger-visual.jpg`} alt="Arquitectura del firmware Autotrigger" />
+            </div>
+          </article>
+        </div>
+      )}
+
+      {launchExpanded && (
+        <div className="stimo-modal" onClick={() => setLaunchExpanded(false)}>
+          <article className="stimo-modal-card" onClick={(e) => e.stopPropagation()}>
+            <div className="stimo-modal-top">
+              <h3>LaunchAssistPy</h3>
+              <button className="stimo-close" onClick={() => setLaunchExpanded(false)}>✕</button>
+            </div>
+
+            <p>
+              Interfaz inteligente del sistema: usa visión artificial para detectar manos y convertir
+              gestos en comandos de control para el lanzador en tiempo real.
+            </p>
+
+            <h4 className="stimo-subtitle">Pipeline</h4>
+            <div className="stimo-kpis">
+              <span>Cámara captura video en tiempo real</span>
+              <span>Detección de manos y cálculo de punto medio</span>
+              <span>Conversión a coordenadas/ángulos de movimiento</span>
+              <span>Envío serial al ESP32 + gesto de disparo</span>
+            </div>
+
+            <h4 className="stimo-subtitle">Tecnologías</h4>
+            <div className="stimo-tech">
+              <span>Python 3</span><span>OpenCV</span><span>MediaPipe</span><span>NumPy</span><span>pySerial</span><span>Logging</span>
+            </div>
+
+            <div className="stimo-gallery-large single">
+              <img src={`${import.meta.env.BASE_URL}img/projects/launchassistpy-visual.jpg`} alt="Arquitectura visual de LaunchAssistPy" />
+            </div>
+          </article>
+        </div>
+      )}
 
       {stimoExpanded && (
         <div className="stimo-modal" onClick={() => setStimoExpanded(false)}>

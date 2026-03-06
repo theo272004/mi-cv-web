@@ -549,6 +549,9 @@ section { padding: 4.5rem 2rem; max-width: 1200px; margin: 0 auto; }
   gap: 0.4rem;
   align-items: center;
 }
+.stimo-gallery-large.single {
+  grid-template-columns: 1fr;
+}
 .stimo-gallery-large button {
   height: 320px;
   border: 1px solid #2f2f3b;
