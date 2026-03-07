@@ -92,6 +92,7 @@ function App() {
   const [stimoExpanded, setStimoExpanded] = useState(false)
   const [autotriggerExpanded, setAutotriggerExpanded] = useState(false)
   const [launchExpanded, setLaunchExpanded] = useState(false)
+  const [expOpen, setExpOpen] = useState({ farm: false, datafacta: false })
 
   useEffect(() => {
     const stimoTimer = setInterval(() => {
@@ -234,13 +235,19 @@ function App() {
             <img src={`${import.meta.env.BASE_URL}img/experience/farmacapsulas-plc.jpg`} alt="Tablero de automatización industrial en Farmacápsulas" loading="lazy" />
             <figcaption>Implementación y pruebas de automatización PLC/HMI en línea de producción.</figcaption>
           </figure>
-          <ul className="exp-bullets">
-            <li>Automatización end-to-end del sistema completo de fabricación de Superflux — lógica PLC, integración HMI y puesta en marcha.</li>
-            <li>Enlace técnico entre equipos internos y representantes internacionales (Syntegon, Bosch) para instalación de maquinaria nueva.</li>
-            <li>Elaboración de informes técnicos, registros operativos y tableros de KPIs para decisiones del equipo de operaciones.</li>
-            <li>Diagnóstico y resolución autónoma de fallas complejas: mecánicas, eléctricas y electrónicas.</li>
-            <li>Cronogramas de mantenimiento preventivo/correctivo que redujeron tiempos de inactividad en producción crítica.</li>
-          </ul>
+          <button className="exp-toggle" onClick={() => setExpOpen((p) => ({ ...p, farm: !p.farm }))}>
+            <span className={expOpen.farm ? 'exp-arrow open' : 'exp-arrow'}>▾</span>
+            {expOpen.farm ? 'Ocultar detalles' : 'Ver más'}
+          </button>
+          {expOpen.farm && (
+            <ul className="exp-bullets">
+              <li>Automatización end-to-end del sistema completo de fabricación de Superflux — lógica PLC, integración HMI y puesta en marcha.</li>
+              <li>Enlace técnico entre equipos internos y representantes internacionales (Syntegon, Bosch) para instalación de maquinaria nueva.</li>
+              <li>Elaboración de informes técnicos, registros operativos y tableros de KPIs para decisiones del equipo de operaciones.</li>
+              <li>Diagnóstico y resolución autónoma de fallas complejas: mecánicas, eléctricas y electrónicas.</li>
+              <li>Cronogramas de mantenimiento preventivo/correctivo que redujeron tiempos de inactividad en producción crítica.</li>
+            </ul>
+          )}
         </div>
 
         <div className="exp-panel reveal">
@@ -253,12 +260,18 @@ function App() {
             <img src={`${import.meta.env.BASE_URL}img/experience/datafacta-team.jpg`} alt="Equipo Datafacta en evento de emprendimiento" loading="lazy" />
             <figcaption>Presentación de Datafacta como solución tecnológica para MYPES.</figcaption>
           </figure>
-          <ul className="exp-bullets">
-            <li>Co-fundé una plataforma de escaneo y estructuración de documentos financieros para MYPES en Colombia.</li>
-            <li>Atacamos procesos manuales sin trazabilidad (papel/digitalización manual), reduciendo reprocesos, tiempos operativos y fricción en la toma de decisiones.</li>
-            <li>Diseñé el flujo completo de diagnóstico, validación y estructuración automática de facturas/comprobantes, sin infraestructura compleja ni intervención manual.</li>
-            <li>Implementé procesamiento en tiempo real con exportación directa a Excel/sistemas contables y panel de control analítico para seguimiento operativo.</li>
-          </ul>
+          <button className="exp-toggle" onClick={() => setExpOpen((p) => ({ ...p, datafacta: !p.datafacta }))}>
+            <span className={expOpen.datafacta ? 'exp-arrow open' : 'exp-arrow'}>▾</span>
+            {expOpen.datafacta ? 'Ocultar detalles' : 'Ver más'}
+          </button>
+          {expOpen.datafacta && (
+            <ul className="exp-bullets">
+              <li>Co-fundé una plataforma de escaneo y estructuración de documentos financieros para MYPES en Colombia.</li>
+              <li>Atacamos procesos manuales sin trazabilidad (papel/digitalización manual), reduciendo reprocesos, tiempos operativos y fricción en la toma de decisiones.</li>
+              <li>Diseñé el flujo completo de diagnóstico, validación y estructuración automática de facturas/comprobantes, sin infraestructura compleja ni intervención manual.</li>
+              <li>Implementé procesamiento en tiempo real con exportación directa a Excel/sistemas contables y panel de control analítico para seguimiento operativo.</li>
+            </ul>
+          )}
         </div>
       </section>
 

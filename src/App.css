@@ -367,6 +367,27 @@ section { padding: 4.5rem 2rem; max-width: 1200px; margin: 0 auto; }
   margin-bottom: 1rem;
 }
 .exp-role { font-size: 1.8rem; font-family: 'Bebas Neue', sans-serif; letter-spacing: 0.04em; }
+.exp-toggle {
+  margin-top: 0.25rem;
+  display: inline-flex;
+  align-items: center;
+  gap: 0.4rem;
+  background: transparent;
+  border: 1px solid rgba(0, 255, 136, 0.25);
+  color: #9bf8d5;
+  font-size: 0.72rem;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  padding: 0.3rem 0.55rem;
+  cursor: pointer;
+}
+.exp-arrow {
+  color: var(--accent);
+  transition: transform 0.2s ease;
+}
+.exp-arrow.open {
+  transform: rotate(180deg);
+}
 .exp-photo {
   margin: 0 0 1rem;
   border: 1px solid #2d2d39;
