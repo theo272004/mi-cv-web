@@ -214,7 +214,7 @@ function App() {
           {skills.map((skill) => {
             const isOpen = !!skillOpen[skill.name]
             return (
-              <div className={isOpen ? 'skill-card reveal open' : 'skill-card reveal'} key={skill.name}>
+              <div className={isOpen ? 'skill-card open' : 'skill-card'} key={skill.name}>
                 <button
                   className="skill-toggle"
                   onClick={() => setSkillOpen((prev) => ({ ...prev, [skill.name]: !prev[skill.name] }))}
