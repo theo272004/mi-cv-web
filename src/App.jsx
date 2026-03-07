@@ -93,6 +93,7 @@ function App() {
   const [autotriggerExpanded, setAutotriggerExpanded] = useState(false)
   const [launchExpanded, setLaunchExpanded] = useState(false)
   const [expOpen, setExpOpen] = useState({ farm: false, datafacta: false })
+  const [skillOpen, setSkillOpen] = useState('IA & LLMs')
 
   useEffect(() => {
     const stimoTimer = setInterval(() => {
@@ -210,15 +211,23 @@ function App() {
       <section id="skills">
         <div className="section-header reveal"><span className="section-num">01</span><h2 className="section-title">Habilidades</h2><div className="section-line"></div></div>
         <div className="skills-grid">
-          {skills.map((skill) => (
-            <div className="skill-card reveal" key={skill.name}>
-              <span className="skill-icon">{skill.icon}</span>
-              <div className="skill-name">{skill.name}</div>
-              <div className="skill-tags">
-                {skill.tags.map((tag) => <span className="tag" key={tag}>{tag}</span>)}
+          {skills.map((skill) => {
+            const isOpen = skillOpen === skill.name
+            return (
+              <div className={isOpen ? 'skill-card reveal open' : 'skill-card reveal'} key={skill.name}>
+                <button className="skill-toggle" onClick={() => setSkillOpen(isOpen ? '' : skill.name)}>
+                  <span className="skill-icon">{skill.icon}</span>
+                  <span className="skill-name">{skill.name}</span>
+                  <span className={isOpen ? 'skill-arrow open' : 'skill-arrow'}>▾</span>
+                </button>
+                {isOpen && (
+                  <div className="skill-tags">
+                    {skill.tags.map((tag) => <span className="tag" key={tag}>{tag}</span>)}
+                  </div>
+                )}
               </div>
-            </div>
-          ))}
+            )
+          })}
         </div>
 
       </section>
