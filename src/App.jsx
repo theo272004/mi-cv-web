@@ -68,6 +68,9 @@ const stimoImages = [
   assetUrl('img/stimo/stimo-4.jpg'),
   assetUrl('img/stimo/stimo-5.jpg'),
   assetUrl('img/stimo/stimo-6.jpg'),
+  assetUrl('img/stimo/stimo-7.jpg'),
+  assetUrl('img/stimo/stimo-8.jpg'),
+  assetUrl('img/stimo/stimo-9.jpg'),
 ]
 
 const launchImages = [
