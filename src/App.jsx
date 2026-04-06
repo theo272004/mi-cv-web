@@ -73,6 +73,11 @@ const stimoImages = [
   assetUrl('img/stimo/stimo-9.jpg'),
 ]
 
+const autotriggerImages = [
+  assetUrl('img/projects/autotrigger-setup.jpg'),
+  assetUrl('img/projects/autotrigger-visual.jpg'),
+]
+
 const launchImages = [
   assetUrl('img/projects/launchassistpy-visual.jpg'),
   assetUrl('img/projects/launchassistpy-gesture.jpg'),
@@ -88,6 +93,7 @@ const certificates = [
 
 function App() {
   const [stimoIndex, setStimoIndex] = useState(0)
+  const [autotriggerIndex, setAutotriggerIndex] = useState(0)
   const [launchIndex, setLaunchIndex] = useState(0)
   const [stimoExpanded, setStimoExpanded] = useState(false)
   const [autotriggerExpanded, setAutotriggerExpanded] = useState(false)
@@ -100,12 +106,17 @@ function App() {
       setStimoIndex((prev) => (prev + 1) % stimoImages.length)
     }, 2500)
 
+    const autotriggerTimer = setInterval(() => {
+      setAutotriggerIndex((prev) => (prev + 1) % autotriggerImages.length)
+    }, 3000)
+
     const launchTimer = setInterval(() => {
       setLaunchIndex((prev) => (prev + 1) % launchImages.length)
     }, 2800)
 
     return () => {
       clearInterval(stimoTimer)
+      clearInterval(autotriggerTimer)
       clearInterval(launchTimer)
     }
   }, [])
@@ -126,6 +137,8 @@ function App() {
 
   const nextStimo = () => setStimoIndex((prev) => (prev + 1) % stimoImages.length)
   const prevStimo = () => setStimoIndex((prev) => (prev - 1 + stimoImages.length) % stimoImages.length)
+  const nextAutotrigger = () => setAutotriggerIndex((prev) => (prev + 1) % autotriggerImages.length)
+  const prevAutotrigger = () => setAutotriggerIndex((prev) => (prev - 1 + autotriggerImages.length) % autotriggerImages.length)
   const nextLaunch = () => setLaunchIndex((prev) => (prev + 1) % launchImages.length)
   const prevLaunch = () => setLaunchIndex((prev) => (prev - 1 + launchImages.length) % launchImages.length)
 
@@ -296,7 +309,17 @@ function App() {
             <div className="project-title">Software Autotrigger</div>
             <div className="project-desc">Firmware en ESP32 que convierte comandos seriales en movimiento físico del lanzador y activación de disparo.</div>
             <div className="stimo-carousel">
-              <img src={`${import.meta.env.BASE_URL}img/projects/autotrigger-visual.jpg`} alt="Diagrama funcional de Autotrigger con ESP32 y control del lanzador" loading="lazy" />
+              <img src={autotriggerImages[autotriggerIndex]} alt={`Autotrigger evidencia ${autotriggerIndex + 1}`} loading="lazy" />
+              <div className="stimo-dots">
+                {autotriggerImages.map((_, i) => (
+                  <button
+                    key={i}
+                    className={i === autotriggerIndex ? 'dot active' : 'dot'}
+                    onClick={(e) => { e.stopPropagation(); setAutotriggerIndex(i) }}
+                    aria-label={`Ir a imagen ${i + 1}`}
+                  ></button>
+                ))}
+              </div>
             </div>
             <small className="stimo-hint">Toca este bloque para abrir el caso completo</small>
           </div>
@@ -370,8 +393,21 @@ function App() {
               <span>C++</span><span>Arduino IDE</span><span>ESP32Servo</span><span>PWM ESP32</span><span>Serial USB</span>
             </div>
 
-            <div className="stimo-gallery-large single">
-              <img src={`${import.meta.env.BASE_URL}img/projects/autotrigger-visual.jpg`} alt="Arquitectura del firmware Autotrigger" />
+            <div className="stimo-gallery-large">
+              <button onClick={prevAutotrigger} aria-label="Imagen anterior">‹</button>
+              <img src={autotriggerImages[autotriggerIndex]} alt={`Autotrigger evidencia ${autotriggerIndex + 1}`} />
+              <button onClick={nextAutotrigger} aria-label="Siguiente imagen">›</button>
+            </div>
+
+            <div className="stimo-dots">
+              {autotriggerImages.map((_, i) => (
+                <button
+                  key={i}
+                  className={i === autotriggerIndex ? 'dot active' : 'dot'}
+                  onClick={() => setAutotriggerIndex(i)}
+                  aria-label={`Ir a imagen ${i + 1}`}
+                ></button>
+              ))}
             </div>
           </article>
         </div>
