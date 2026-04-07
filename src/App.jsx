@@ -83,8 +83,9 @@ const launchImages = [
   assetUrl('img/projects/launchassistpy-gesture.jpg'),
 ]
 
+const cvFile = assetUrl('certificados/CV_Mateo_David_Castro_Villegas.pdf')
+
 const certificates = [
-  { title: 'CV - Mateo David Castro Villegas', file: assetUrl('certificados/CV_Mateo_David_Castro_Villegas.pdf') },
   { title: 'DNDA-145 Software Autotrigger', file: assetUrl('certificados/DNDA-145_Software_Autotrigger_Registro.pdf') },
   { title: 'DNDA-146 Software LaunchAssistPy', file: assetUrl('certificados/DNDA-146_Software_LaunchAssistPy_Registro.pdf') },
   { title: 'DNDA-172 Software STIMO', file: assetUrl('certificados/DNDA-172_Software_STIMO_Registro.pdf') },
@@ -531,10 +532,11 @@ function App() {
         <div className="contact-inner">
           <div>
             <div className="contact-headline reveal">Listo para <em>automatizar</em> con impacto real</div>
-            <p className="contact-text reveal">También puedes descargar directamente tus certificados y CV desde aquí.</p>
+            <p className="contact-text reveal">También puedes descargar directamente tu CV y certificados desde aquí.</p>
             <div className="hero-cta reveal">
               <a href="mailto:mateodcvnew@gmail.com" className="btn btn-primary">Escribir ahora ↗</a>
               <a href="https://github.com/theo272004" target="_blank" rel="noreferrer" className="btn btn-ghost">GitHub</a>
+              <a href={cvFile} target="_blank" rel="noreferrer" className="btn btn-ghost">Descargar CV</a>
             </div>
           </div>
 
@@ -546,7 +548,7 @@ function App() {
         </div>
 
         <div className="downloads">
-          <h3 className="downloads-title">Descargar certificados y CV</h3>
+          <h3 className="downloads-title">Descargar certificados</h3>
           <div className="downloads-grid">
             {certificates.map((c) => (
               <a className="download-chip" key={c.title} href={c.file} target="_blank" rel="noreferrer">
