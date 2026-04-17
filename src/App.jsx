@@ -1,6 +1,7 @@
 import { useEffect, useState } from 'react'
 import './App.css'
-
+import RobotCanvas from './RobotMateo'
+import PhysicsOrbits from './PhysicsOrbits'
 const assetUrl = (path) => `${import.meta.env.BASE_URL}${path.replace(/^\/+/, '')}`
 
 const skills = [
@@ -47,18 +48,23 @@ const skills = [
 ]
 
 const orbitSkills = [
-  { label: 'Python', radius: 210, speed: 16, delay: 0 },
-  { label: 'APIs REST', radius: 210, speed: 20, delay: 2 },
-  { label: 'LLMs', radius: 210, speed: 18, delay: 4 },
-  { label: 'Ollama', radius: 210, speed: 22, delay: 6 },
-  { label: 'PLC', radius: 260, speed: 24, delay: 1 },
-  { label: 'HMI', radius: 260, speed: 28, delay: 3 },
-  { label: 'n8n', radius: 260, speed: 26, delay: 5 },
-  { label: 'Power BI', radius: 260, speed: 30, delay: 7 },
-  { label: 'SQL', radius: 300, speed: 34, delay: 0 },
-  { label: 'React', radius: 300, speed: 32, delay: 2.5 },
-  { label: 'Visión IA', radius: 300, speed: 36, delay: 5 },
-  { label: 'SolidWorks', radius: 300, speed: 38, delay: 7.5 },
+  // INNER ORBIT (Mechatrónica & Hardware) - Radio central (250)
+  { label: 'PLC', icon: 'https://cdn.simpleicons.org/siemens/009999', radius: 250, speed: 24, delay: 0, scale: 2.2 },
+  { label: 'SolidWorks', icon: assetUrl('img/solidworks.png'), radius: 250, speed: 26, delay: 2.5 },
+  { label: 'HMI', icon: 'https://cdn.simpleicons.org/electron/47848F', radius: 250, speed: 22, delay: 5 },
+  { label: 'Visión IA', icon: 'https://cdn.simpleicons.org/opencv/5C3EE8', radius: 250, speed: 28, delay: 7.5 },
+  
+  // MIDDLE ORBIT (Automatización & Datos) - Radio medio (330)
+  { label: 'n8n', icon: 'https://cdn.simpleicons.org/n8n/EA4E43', radius: 330, speed: 32, delay: 0 },
+  { label: 'APIs REST', icon: 'https://cdn.simpleicons.org/postman/FF6C37', radius: 330, speed: 30, delay: 3 },
+  { label: 'Power BI', icon: assetUrl('img/powerbi.svg'), radius: 330, speed: 36, delay: 6 },
+  { label: 'SQL', icon: 'https://cdn.simpleicons.org/mysql/4479A1', radius: 330, speed: 34, delay: 9 },
+
+  // OUTER ORBIT (Software & AI) - Radio lejano (410)
+  { label: 'Python', icon: 'https://cdn.simpleicons.org/python/3776AB', radius: 410, speed: 42, delay: 0 },
+  { label: 'LLMs', icon: 'https://cdn.simpleicons.org/huggingface/FFD21E', radius: 410, speed: 44, delay: 4 },
+  { label: 'Ollama', icon: 'https://cdn.simpleicons.org/ollama/FFFFFF', radius: 410, speed: 46, delay: 8 },
+  { label: 'React', icon: 'https://cdn.simpleicons.org/react/61DAFB', radius: 410, speed: 40, delay: 12 },
 ]
 
 const stimoImages = [
@@ -198,21 +204,12 @@ function App() {
             <div className="circuit-ring"></div>
             <div className="circuit-ring"></div>
             <div className="circuit-center">
-              <div className="circuit-core">
-                <span className="circuit-icon">⚙️</span>
-                <span className="circuit-label">Mecatrónico</span>
+              <div style={{ width: '280px', height: '280px', pointerEvents: 'auto' }}>
+                <RobotCanvas />
               </div>
             </div>
 
-            {orbitSkills.map((item) => (
-              <div
-                key={item.label}
-                className="orbit"
-                style={{ '--radius': `${item.radius}px`, '--speed': `${item.speed}s`, '--delay': `-${item.delay}s` }}
-              >
-                <span className="orbit-label">{item.label}</span>
-              </div>
-            ))}
+            <PhysicsOrbits skills={orbitSkills} />
           </div>
         </div>
       </div>

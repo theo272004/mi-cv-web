@@ -232,7 +232,7 @@ nav {
   justify-content: center;
 }
 
-.circuit-container { position: relative; width: 380px; height: 380px; animation: fadeUp 0.8s ease both; }
+.circuit-container { position: relative; width: 820px; height: 820px; animation: fadeUp 0.8s ease both; pointer-events: none; }
 
 .circuit-ring {
   position: absolute;
@@ -240,11 +240,12 @@ nav {
   border: 1px solid var(--accent);
   opacity: 0.35;
   animation: spin linear infinite;
+  pointer-events: none;
 }
 
 .circuit-ring:nth-child(1) { inset: 0; animation-duration: 30s; border-style: dashed; }
-.circuit-ring:nth-child(2) { inset: 30px; animation-duration: 22s; animation-direction: reverse; border-color: var(--accent2); opacity: 0.22; }
-.circuit-ring:nth-child(3) { inset: 70px; animation-duration: 16s; opacity: 0.16; }
+.circuit-ring:nth-child(2) { inset: 80px; animation-duration: 22s; animation-direction: reverse; border-color: var(--accent2); opacity: 0.22; }
+.circuit-ring:nth-child(3) { inset: 160px; animation-duration: 16s; opacity: 0.16; }
 
 .circuit-center { position: absolute; inset: 0; display: flex; align-items: center; justify-content: center; }
 .circuit-core {
@@ -257,38 +258,82 @@ nav {
   justify-content: center;
   flex-direction: column;
   gap: 0.35rem;
-  box-shadow: 0 0 45px var(--glow), inset 0 0 20px rgba(0,229,160,0.07);
+  box-shadow: 0 0 45px var(--glow), inset 0 0 20px rgba(0, 229, 160, 0.07);
 }
 
 .circuit-icon { font-size: 2.2rem; }
 .circuit-label { font-size: 0.62rem; letter-spacing: 0.15em; color: var(--accent); text-transform: uppercase; }
 
-.orbit {
+/* Physics Orbit System Styles */
+.physics-container {
   position: absolute;
-  top: 50%;
-  left: 50%;
-  width: 2px;
-  height: 2px;
-  animation: orbit var(--speed) linear infinite;
-  animation-delay: var(--delay);
+  inset: 0;
+  pointer-events: none; /* Allows clicks to pass through to the underlying canvas if needed */
 }
 
-.orbit-label {
+.physics-orbit-icon {
   position: absolute;
-  left: var(--radius);
+  left: 50%;
   top: 50%;
-  transform: translate(-50%, -50%);
-  background: #171717;
-  border: 1px solid rgba(0, 229, 160, 0.35);
-  color: var(--accent);
-  box-shadow: 0 0 14px rgba(0, 229, 160, 0.16);
-  padding: 0.35rem 0.62rem;
+  /* No transform set here initially, JS sets it directly via inline style */
+  background: #111116;
+  border: 1px solid rgba(59, 130, 246, 0.35);
+  box-shadow: 0 0 18px rgba(59, 130, 246, 0.15), inset 0 0 12px rgba(255, 255, 255, 0.03);
+  width: 42px;
+  height: 42px;
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  backdrop-filter: blur(8px);
+  cursor: grab;
+  pointer-events: auto; /* Re-enable pointer events for icons */
+  will-change: transform;
+  transition: border-color 0.2s ease, box-shadow 0.2s ease, background 0.2s ease;
+}
+
+.physics-orbit-icon:active {
+  cursor: grabbing;
+}
+
+.physics-orbit-icon:hover {
+  border-color: rgba(59, 130, 246, 0.8);
+  box-shadow: 0 0 25px rgba(59, 130, 246, 0.45);
+  background: #1a1a24;
+}
+
+.physics-orbit-icon img {
+  width: 22px;
+  height: 22px;
+  object-fit: contain;
+  filter: drop-shadow(0 0 4px rgba(255, 255, 255, 0.15));
+  pointer-events: none; /* Prevent native drag */
+}
+
+.orbit-tooltip {
+  position: absolute;
+  bottom: -28px;
+  background: rgba(10, 10, 14, 0.95);
+  color: #fff;
+  border: 1px solid rgba(0, 229, 160, 0.3);
+  padding: 0.35rem 0.6rem;
+  font-family: 'DM Mono', monospace;
   font-size: 0.62rem;
-  letter-spacing: 0.08em;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  border-radius: 4px;
+  opacity: 0;
+  visibility: hidden;
+  transition: all 0.2s cubic-bezier(0.4, 0, 0.2, 1);
   white-space: nowrap;
-  border-radius: 3px;
-  animation: counterOrbit var(--speed) linear infinite;
-  animation-delay: var(--delay);
+  pointer-events: none;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.4);
+}
+
+.physics-orbit-icon:hover .orbit-tooltip {
+  opacity: 1;
+  visibility: visible;
+  bottom: -36px;
 }
 
 .stats-bar {
@@ -349,7 +394,7 @@ section { padding: 4.5rem 2rem; max-width: 1200px; margin: 0 auto; }
 .skill-arrow { color: var(--accent); transition: transform 0.2s ease; text-align: right; }
 .skill-arrow.open { transform: rotate(180deg); }
 .skill-tags { display: flex; flex-wrap: wrap; gap: 0.36rem; padding: 0 1.1rem 1rem 1.1rem; }
-.tag { font-size: 0.6rem; letter-spacing: 0.1em; text-transform: uppercase; padding: 0.2rem 0.58rem; background: rgba(0,229,160,0.08); border: 1px solid rgba(0,229,160,0.2); color: var(--accent); }
+.tag { font-size: 0.6rem; letter-spacing: 0.1em; text-transform: uppercase; padding: 0.2rem 0.58rem; background: rgba(0, 229, 160, 0.08); border: 1px solid rgba(0,229,160,0.2); color: var(--accent); }
 @media (min-width: 900px) {
   .skills-grid { grid-template-columns: repeat(2, 1fr); }
 }
@@ -372,7 +417,7 @@ section { padding: 4.5rem 2rem; max-width: 1200px; margin: 0 auto; }
   letter-spacing: 0.12em;
   color: var(--accent);
   border: 1px solid rgba(0,255,136,0.28);
-  background: rgba(0,255,136,0.07);
+  background: rgba(0, 229, 160, 0.07);
   padding: 0.3rem 0.6rem;
   text-transform: uppercase;
   white-space: nowrap;
@@ -432,7 +477,7 @@ section { padding: 4.5rem 2rem; max-width: 1200px; margin: 0 auto; }
 .projects-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 1px; background: var(--border); border: 1px solid var(--border); }
 .project-card { background: var(--surface); padding: 1.5rem; position: relative; }
 .project-card:hover { background: var(--surface2); }
-.project-num { font-size: 2.5rem; font-weight: 800; color: rgba(0,229,160,0.08); position: absolute; top: 0.5rem; right: 1rem; }
+.project-num { font-size: 2.5rem; font-weight: 800; color: rgba(0, 229, 160, 0.08); position: absolute; top: 0.5rem; right: 1rem; }
 .project-badge { display: inline-block; font-size: 0.62rem; letter-spacing: 0.14em; text-transform: uppercase; background: rgba(0,229,160,0.1); color: var(--accent); padding: 0.2rem 0.5rem; margin-bottom: 0.7rem; }
 .project-title { font-size: 1rem; font-weight: 700; margin-bottom: 0.6rem; }
 .project-desc { font-size: 0.8rem; color: #8f8f8f; line-height: 1.7; }
@@ -471,8 +516,8 @@ section { padding: 4.5rem 2rem; max-width: 1200px; margin: 0 auto; }
   font-family: 'DM Mono', monospace;
   font-size: 0.68rem;
   color: #c6ffea;
-  background: rgba(0, 229, 160, 0.1);
-  border: 1px solid rgba(0, 229, 160, 0.2);
+  background: rgba(0,229,160,0.1);
+  border: 1px solid rgba(0,229,160,0.2);
   border-radius: 4px;
   padding: 0.05rem 0.28rem;
 }
@@ -664,7 +709,7 @@ section { padding: 4.5rem 2rem; max-width: 1200px; margin: 0 auto; }
   gap: 0.55rem;
   align-items: center;
 }
-.download-chip:hover { border-color: var(--accent); color: var(--accent); background: rgba(0,255,136,0.07); }
+.download-chip:hover { border-color: var(--accent); color: var(--accent); background: rgba(0, 229, 160, 0.07); }
 
 footer { padding: 1.2rem 2rem; display: flex; justify-content: space-between; border-top: 1px solid var(--border); }
 .footer-text { font-size: 0.66rem; color: #747474; letter-spacing: 0.09em; }
@@ -675,8 +720,6 @@ footer { padding: 1.2rem 2rem; display: flex; justify-content: space-between; bo
 
 @keyframes fadeUp { from { opacity: 0; transform: translateY(18px); } to { opacity: 1; transform: translateY(0); } }
 @keyframes spin { to { transform: rotate(360deg); } }
-@keyframes orbit { from { transform: rotate(0deg); } to { transform: rotate(360deg); } }
-@keyframes counterOrbit { from { transform: translate(-50%, -50%) rotate(0deg); } to { transform: translate(-50%, -50%) rotate(-360deg); } }
 @keyframes scan { from { top: 0%; } to { top: 100%; } }
 @keyframes pulse {
   0%, 100% { box-shadow: 0 0 0 0 rgba(0, 229, 160, 0.45); }
@@ -698,3 +741,5 @@ footer { padding: 1.2rem 2rem; display: flex; justify-content: space-between; bo
   .downloads { padding: 0 1rem 1.4rem; }
   footer { padding: 1rem; flex-direction: column; gap: 0.35rem; }
 }
+
+
