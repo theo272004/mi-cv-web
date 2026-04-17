@@ -50,7 +50,7 @@ const skills = [
 const orbitSkills = [
   // INNER ORBIT (Mechatrónica & Hardware) - Radio central (250)
   { label: 'PLC', icon: 'https://cdn.simpleicons.org/siemens/009999', radius: 250, speed: 24, delay: 0, scale: 2.2 },
-  { label: 'SolidWorks', icon: assetUrl('img/solidworks.png'), radius: 250, speed: 26, delay: 2.5 },
+  { label: 'SolidWorks', icon: assetUrl('img/solidworks.png'), radius: 250, speed: 26, delay: 2.5, scale: 1.22 },
   { label: 'HMI', icon: 'https://cdn.simpleicons.org/electron/47848F', radius: 250, speed: 22, delay: 5 },
   { label: 'Visión IA', icon: 'https://cdn.simpleicons.org/opencv/5C3EE8', radius: 250, speed: 28, delay: 7.5 },
   

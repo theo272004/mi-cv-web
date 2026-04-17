@@ -29,6 +29,7 @@ export function RobotModel({ url }) {
   const lastMouseMoveTime = useRef(0)
   const blinkState = useRef({ timer: 0, nextBlink: 3 })
   const eyesRef = useRef({ e1: null, e2: null })
+  const accentGreen = '#00ff88'
 
   useEffect(() => {
     lastMouseMoveTime.current = performance.now()
@@ -58,6 +59,13 @@ export function RobotModel({ url }) {
             e1.userData.init = true
             e1.translateZ(0.015) // Empujar un poco hacia fuera para que no se hunda en el visor
           }
+          if (e1.material) {
+            e1.material = e1.material.clone()
+            e1.material.color = new THREE.Color(accentGreen)
+            e1.material.emissive = new THREE.Color(accentGreen)
+            e1.material.emissiveIntensity = 1.8
+            e1.material.needsUpdate = true
+          }
         }
         if (!e2 && normalized.includes('ojito2')) {
           e2 = child
@@ -67,6 +75,13 @@ export function RobotModel({ url }) {
             e2.userData.origRotY = e2.rotation.y
             e2.userData.init = true
             e2.translateZ(0.015) // Empujar un poco hacia fuera para que no se hunda en el visor
+          }
+          if (e2.material) {
+            e2.material = e2.material.clone()
+            e2.material.color = new THREE.Color(accentGreen)
+            e2.material.emissive = new THREE.Color(accentGreen)
+            e2.material.emissiveIntensity = 1.8
+            e2.material.needsUpdate = true
           }
         }
       }
