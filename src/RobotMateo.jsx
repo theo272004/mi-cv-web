@@ -98,7 +98,7 @@ export function RobotModel({ url }) {
       const downwardMultiplier = mouse.current.y < 0 ? 0.8 : 0.35
 
       let bodyTargetX = -mouse.current.y * downwardMultiplier 
-      let bodyTargetY = mouse.current.x * 0.5
+      let bodyTargetY = Math.PI + (mouse.current.x * 0.5)
 
       // El cuerpo ya da el 99% de la sensación de movimiento.
       // Damos a los ojos una rotación casi nula (0.02) para evitar cualquier deformación o hundimiento en la malla.
@@ -153,7 +153,7 @@ export function RobotModel({ url }) {
 
   // Clone the scene and center it
   return (
-    <group ref={robotRef} rotation={[0, 0, 0]}>
+    <group ref={robotRef} rotation={[0, Math.PI, 0]}>
       <Center>
         <primitive object={scene} />
       </Center>
