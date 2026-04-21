@@ -1,4 +1,4 @@
-import React, { useRef, Suspense, useEffect } from 'react'
+import React, { useRef, Suspense, useEffect, useState } from 'react'
 import * as THREE from 'three'
 import { Canvas, useFrame } from '@react-three/fiber'
 import { useGLTF, Center, Bounds } from '@react-three/drei'
@@ -164,22 +164,56 @@ export function RobotModel({ url }) {
 const MODEL_PATH = `${import.meta.env.BASE_URL}robotcito.glb`
 useGLTF.preload(MODEL_PATH)
 
+function RobotLoader() {
+  const [dots, setDots] = useState('.')
+  useEffect(() => {
+    const id = setInterval(() => setDots(d => d.length >= 3 ? '.' : d + '.'), 400)
+    return () => clearInterval(id)
+  }, [])
+  return (
+    <div style={{
+      position: 'absolute', inset: 0,
+      display: 'flex', flexDirection: 'column',
+      alignItems: 'center', justifyContent: 'center',
+      gap: '8px', pointerEvents: 'none',
+    }}>
+      <div style={{
+        width: 36, height: 36,
+        border: '2px solid #1f1f28',
+        borderTop: '2px solid #00ff88',
+        borderRadius: '50%',
+        animation: 'spin 0.8s linear infinite',
+      }} />
+      <span style={{ color: '#00ff88', fontSize: '11px', letterSpacing: '0.1em', fontFamily: 'monospace' }}>
+        cargando{dots}
+      </span>
+      <style>{`@keyframes spin { to { transform: rotate(360deg); } }`}</style>
+    </div>
+  )
+}
+
 export default function RobotCanvas() {
   return (
     <ErrorBoundary>
-      <Canvas
-        camera={{ position: [0, 0, 5], fov: 50 }}
-        style={{ width: '100%', height: '100%', pointerEvents: 'none', background: 'transparent' }}
-        gl={{ alpha: true, preserveDrawingBuffer: false, powerPreference: 'high-performance' }}
-      >
-        <ambientLight intensity={2.5} />
-        <directionalLight position={[10, 10, 5]} intensity={2} />
-        <Suspense fallback={null}>
-          <Bounds fit clip margin={1.15}>
-            <RobotModel url={MODEL_PATH} />
-          </Bounds>
+      <div style={{ position: 'relative', width: '100%', height: '100%' }}>
+        <Suspense fallback={<RobotLoader />}>
+          <Canvas
+            dpr={[1, 1.5]}
+            camera={{ position: [0, 0, 5], fov: 50 }}
+            style={{ width: '100%', height: '100%', pointerEvents: 'none', background: 'transparent' }}
+            gl={{ alpha: true, preserveDrawingBuffer: false, antialias: true, powerPreference: 'high-performance' }}
+            performance={{ min: 0.5 }}
+          >
+            <ambientLight intensity={2.5} />
+            <directionalLight position={[10, 10, 5]} intensity={2} />
+            <Suspense fallback={null}>
+              <Bounds fit clip margin={1.15}>
+                <RobotModel url={MODEL_PATH} />
+              </Bounds>
+            </Suspense>
+          </Canvas>
         </Suspense>
-      </Canvas>
+      </div>
     </ErrorBoundary>
   )
 }

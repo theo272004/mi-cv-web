@@ -1,7 +1,8 @@
-import { useEffect, useState } from 'react'
+import { Suspense, lazy, useEffect, useState } from 'react'
 import './App.css'
-import RobotCanvas from './RobotMateo'
 import PhysicsOrbits from './PhysicsOrbits'
+
+const RobotCanvas = lazy(() => import('./RobotMateo'))
 const assetUrl = (path) => `${import.meta.env.BASE_URL}${path.replace(/^\/+/, '')}`
 
 const skills = [
@@ -107,6 +108,7 @@ function App() {
   const [launchExpanded, setLaunchExpanded] = useState(false)
   const [expOpen, setExpOpen] = useState({ farm: false, datafacta: false })
   const [skillOpen, setSkillOpen] = useState({})
+  const [showRobot, setShowRobot] = useState(false)
 
   useEffect(() => {
     const stimoTimer = setInterval(() => {
@@ -126,6 +128,18 @@ function App() {
       clearInterval(autotriggerTimer)
       clearInterval(launchTimer)
     }
+  }, [])
+
+  useEffect(() => {
+    const scheduleRobot = () => setShowRobot(true)
+
+    if ('requestIdleCallback' in window) {
+      const idleId = window.requestIdleCallback(scheduleRobot, { timeout: 1200 })
+      return () => window.cancelIdleCallback(idleId)
+    }
+
+    const timer = window.setTimeout(scheduleRobot, 350)
+    return () => window.clearTimeout(timer)
   }, [])
 
   useEffect(() => {
@@ -204,8 +218,14 @@ function App() {
             <div className="circuit-ring"></div>
             <div className="circuit-ring"></div>
             <div className="circuit-center">
-              <div style={{ width: '280px', height: '280px', pointerEvents: 'auto' }}>
-                <RobotCanvas />
+              <div className="robot-shell" style={{ width: '280px', height: '280px', pointerEvents: 'auto' }}>
+                {showRobot ? (
+                  <Suspense fallback={<div className="robot-loading">Cargando robot...</div>}>
+                    <RobotCanvas />
+                  </Suspense>
+                ) : (
+                  <div className="robot-loading">Cargando robot...</div>
+                )}
               </div>
             </div>
 
