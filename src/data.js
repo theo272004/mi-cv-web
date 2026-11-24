@@ -30,20 +30,20 @@ export const titleBlock = [
 export const focus = [
   { icon: 'gear', label: 'Automatización industrial' },
   { icon: 'chip', label: 'IA aplicada' },
-  { icon: 'code', label: 'Software industrial' },
+  { icon: 'code', label: 'Desarrollo de software' },
   { icon: 'layers', label: 'Integración de datos' },
 ]
 
 export const about = [
-  'Ingeniero Mecatrónico con experiencia en automatización, mantenimiento y desarrollo de soluciones tecnológicas para la industria.',
-  'Me enfoco en integrar hardware, software y datos para mejorar la confiabilidad, la eficiencia y la productividad en planta.',
+  'Soy ingeniero mecatrónico de la Universidad Autónoma del Caribe. Trabajo como ingeniero de mantenimiento en Farmacápsulas, donde automatizo líneas de producción, diagnostico fallas mecánicas, eléctricas y electrónicas y acompaño la puesta en marcha de maquinaria nueva.',
+  'Fuera de planta desarrollo software: tengo tres obras registradas ante la DNDA, cofundé Datafacta y dirijo Kaiva Studio. Esa mezcla me permite llevar un proyecto desde el tablero eléctrico hasta la aplicación que muestra sus datos.',
 ]
 
 export const services = [
-  { icon: 'gear', label: 'Automatización de procesos' },
-  { icon: 'chart', label: 'Optimización de la operación' },
-  { icon: 'wrench', label: 'Mantenimiento y confiabilidad' },
-  { icon: 'laptop', label: 'Desarrollo de herramientas' },
+  { icon: 'gear', label: 'Automatización con PLC y HMI' },
+  { icon: 'wrench', label: 'Mantenimiento y diagnóstico de fallas' },
+  { icon: 'chip', label: 'Visión artificial e IA aplicada' },
+  { icon: 'chart', label: 'Software, datos y tableros de KPI' },
 ]
 
 export const principles = [

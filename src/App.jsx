@@ -157,8 +157,8 @@ function App() {
                 <span className="hero-role">Ingeniero Mecatrónico</span>
               </h1>
               <p className="hero-lead">
-                Ingeniería aplicada a la operación real: conecto automatización industrial, IA y software para
-                que la tecnología funcione en planta.
+                Automatizo procesos industriales y desarrollo el software que los conecta: PLC, HMI, visión
+                artificial e IA aplicada, desde el diseño hasta la puesta en marcha.
               </p>
               <div className="actions">
                 <a className="btn btn-primary" href="#contacto">
@@ -225,7 +225,7 @@ function App() {
                 <h2 className="bar-title">Sobre mí</h2>
                 {about.map((paragraph) => <p key={paragraph}>{paragraph}</p>)}
                 <a className="more" href="#experiencia">
-                  Conóceme más <Icon name="arrow" size={18} />
+                  Ver mi experiencia <Icon name="arrow" size={18} />
                 </a>
               </div>
               <div className="about-services">
