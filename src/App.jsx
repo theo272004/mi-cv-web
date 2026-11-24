@@ -1,14 +1,26 @@
 import { Suspense, lazy, useEffect, useState } from 'react'
-import { contact, education, experience, navLinks, principles, projects, skills, titleBlock } from './data'
+import Icon from './Icon'
+import {
+  about,
+  contact,
+  education,
+  experience,
+  focus,
+  navLinks,
+  principles,
+  projects,
+  services,
+  skills,
+  titleBlock,
+} from './data'
 
 const RobotCanvas = lazy(() => import('./RobotMateo'))
 const external = { target: '_blank', rel: 'noreferrer' }
 
-function SectionHead({ number, title, lead }) {
+function SectionHead({ title, lead }) {
   return (
     <header className="section-head">
-      <span className="label">{number}</span>
-      <h2>{title}</h2>
+      <h2 className="bar-title">{title}</h2>
       {lead && <p>{lead}</p>}
     </header>
   )
@@ -20,7 +32,7 @@ function ThemeToggle() {
 
   useEffect(() => {
     document.documentElement.dataset.theme = theme
-    document.querySelector('meta[name="theme-color"]')?.setAttribute('content', isDark ? '#0f151b' : '#eef0ed')
+    document.querySelector('meta[name="theme-color"]')?.setAttribute('content', isDark ? '#0f151b' : '#f7f6f3')
     try {
       localStorage.setItem('theme', theme)
     } catch {
@@ -117,7 +129,7 @@ function App() {
             ))}
           </nav>
           <a className="btn btn-small" href={contact.cv} {...external}>
-            CV<span className="cv-long">en PDF</span> <span aria-hidden="true">↓</span>
+            CV<span className="cv-long">en PDF</span> <Icon name="download" size={16} />
           </a>
           <ThemeToggle />
           <button
@@ -136,7 +148,10 @@ function App() {
         <section className="hero" id="inicio">
           <div className="wrap hero-grid">
             <div className="hero-copy">
-              <p className="label">Barranquilla, Colombia</p>
+              <p className="label hero-place">
+                <Icon name="pin" size={16} />
+                Barranquilla, Colombia
+              </p>
               <h1>
                 Mateo Castro Villegas
                 <span className="hero-role">Ingeniero Mecatrónico</span>
@@ -145,29 +160,57 @@ function App() {
                 Ingeniería aplicada a la operación real: conecto automatización industrial, IA y software para
                 que la tecnología funcione en planta.
               </p>
-              <p className="hero-text">
-                Como ingeniero, diseño soluciones de extremo a extremo: lógica PLC, interfaces HMI, visión
-                artificial, agentes de IA e integración de datos trabajando como un solo sistema.
-              </p>
               <div className="actions">
-                <a className="btn btn-primary" href="#contacto">Hablemos</a>
+                <a className="btn btn-primary" href="#contacto">
+                  Hablemos <Icon name="arrow" size={18} />
+                </a>
                 <a className="btn" href="#proyectos">Ver proyectos</a>
+                <ul className="socials">
+                  <li>
+                    <a href={contact.linkedin} aria-label="LinkedIn" {...external}>
+                      <Icon name="linkedin" size={22} />
+                    </a>
+                  </li>
+                  <li>
+                    <a href={contact.github} aria-label="GitHub" {...external}>
+                      <Icon name="github" size={22} />
+                    </a>
+                  </li>
+                  <li>
+                    <a href={`mailto:${contact.email}`} aria-label="Correo">
+                      <Icon name="mail" size={22} />
+                    </a>
+                  </li>
+                </ul>
               </div>
             </div>
-            <div className="robot" aria-hidden="true">
-              {robotReady && (
-                <Suspense fallback={null}>
-                  <RobotCanvas />
-                </Suspense>
-              )}
+            <div className="robot-stage">
+              <div className="robot" aria-hidden="true">
+                {robotReady && (
+                  <Suspense fallback={null}>
+                    <RobotCanvas />
+                  </Suspense>
+                )}
+              </div>
             </div>
+            <ul className="focus" aria-label="Áreas de trabajo">
+              {focus.map((item) => (
+                <li key={item.label}>
+                  <Icon name={item.icon} size={26} />
+                  {item.label}
+                </li>
+              ))}
+            </ul>
           </div>
 
           <div className="wrap">
             <dl className="title-block">
               {titleBlock.map((cell) => (
                 <div key={cell.label}>
-                  <dt>{cell.label}</dt>
+                  <dt>
+                    <Icon name={cell.icon} size={28} />
+                    {cell.label}
+                  </dt>
                   <dd>{cell.value}</dd>
                 </div>
               ))}
@@ -175,37 +218,56 @@ function App() {
           </div>
         </section>
 
-        <section className="section" id="capacidades">
+        <section className="section" id="sobre-mi">
           <div className="wrap">
-            <SectionHead
-              number="01"
-              title="Capacidades"
-              lead="Las áreas donde más valor aporto hoy, y la forma en que las combino."
-            />
-            <div className="skills">
-              {skills.map((group) => (
-                <div className="skill" key={group.name}>
-                  <h3>{group.name}</h3>
-                  <ul>
-                    {group.items.map((item) => <li key={item}>{item}</li>)}
-                  </ul>
-                </div>
-              ))}
+            <div className="about">
+              <div className="about-text">
+                <h2 className="bar-title">Sobre mí</h2>
+                {about.map((paragraph) => <p key={paragraph}>{paragraph}</p>)}
+                <a className="more" href="#experiencia">
+                  Conóceme más <Icon name="arrow" size={18} />
+                </a>
+              </div>
+              <div className="about-services">
+                <h2 className="bar-title">Qué hago</h2>
+                <ul className="services">
+                  {services.map((item) => (
+                    <li key={item.label}>
+                      <Icon name={item.icon} size={34} />
+                      {item.label}
+                    </li>
+                  ))}
+                </ul>
+              </div>
             </div>
-            <ol className="principles">
-              {principles.map((item) => (
-                <li key={item.title} className={item.featured ? 'is-featured' : undefined}>
-                  <h3>{item.title}</h3>
-                  <p>{item.text}</p>
-                </li>
-              ))}
-            </ol>
+
+            <div className="capabilities" id="capacidades">
+              <h3>Capacidades</h3>
+              <div className="skills">
+                {skills.map((group) => (
+                  <div className="skill" key={group.name}>
+                    <h4>{group.name}</h4>
+                    <ul>
+                      {group.items.map((item) => <li key={item}>{item}</li>)}
+                    </ul>
+                  </div>
+                ))}
+              </div>
+              <ol className="principles">
+                {principles.map((item) => (
+                  <li key={item.title}>
+                    <h4>{item.title}</h4>
+                    <p>{item.text}</p>
+                  </li>
+                ))}
+              </ol>
+            </div>
           </div>
         </section>
 
         <section className="section" id="experiencia">
           <div className="wrap">
-            <SectionHead number="02" title="Experiencia" />
+            <SectionHead title="Experiencia" />
             {experience.map((job) => (
               <article className={job.images ? 'job' : 'job job-wide'} key={job.company}>
                 <div className="job-meta">
@@ -250,7 +312,6 @@ function App() {
         <section className="section" id="proyectos">
           <div className="wrap">
             <SectionHead
-              number="03"
               title="Proyectos"
               lead="Tres obras de software registradas ante la Dirección Nacional de Derecho de Autor (DNDA), con su manual y su certificado."
             />
@@ -283,7 +344,7 @@ function App() {
                   <div className="actions">
                     {project.docs.map((doc) => (
                       <a className="btn btn-small" key={doc.label} href={doc.file} {...external}>
-                        {doc.label} <span aria-hidden="true">↓</span>
+                        {doc.label} <Icon name="download" size={16} />
                       </a>
                     ))}
                   </div>
@@ -296,7 +357,7 @@ function App() {
 
         <section className="section" id="formacion">
           <div className="wrap">
-            <SectionHead number="04" title="Formación" />
+            <SectionHead title="Formación" />
             <ul className="education">
               {education.map((item) => (
                 <li key={item.title} className={item.featured ? 'is-featured' : undefined}>
@@ -320,7 +381,7 @@ function App() {
         <section className="section contact" id="contacto">
           <div className="wrap contact-grid">
             <div>
-              <p className="label">05 · Contacto</p>
+              <p className="label">Contacto</p>
               <h2>¿Tienes un proceso que automatizar o un sistema que integrar?</h2>
               <p>
                 Soy ingeniero mecatrónico y me muevo con soltura entre automatización, software, datos e IA
@@ -329,7 +390,7 @@ function App() {
               <div className="actions">
                 <a className="btn btn-primary" href={`mailto:${contact.email}`}>Escribirme</a>
                 <a className="btn" href={contact.cv} {...external}>
-                  Descargar CV <span aria-hidden="true">↓</span>
+                  Descargar CV <Icon name="download" size={18} />
                 </a>
               </div>
             </div>

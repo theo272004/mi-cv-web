@@ -1,14 +1,14 @@
-/* Sistema visual: hoja de plano técnico.
-   Papel frío, tinta azul-negra, líneas finas y un único acento naranja de señalización. */
+/* Sistema visual: blanco cálido, tinta casi negra, tarjetas suaves con esquinas
+   redondeadas y un único acento naranja. */
 
 :root {
-  --paper: #eef0ed;
-  --sheet: #f8f9f6;
-  --ink: #111a22;
-  --ink-soft: #44525e;
-  --line: #c9cfcc;
-  --accent: #e5491b;
-  --accent-text: #b3360f;
+  --paper: #f7f6f3;
+  --sheet: #ffffff;
+  --ink: #14181d;
+  --ink-soft: #4a545e;
+  --line: #e2e1dc;
+  --accent: #ee5a1c;
+  --accent-text: #b8400d;
   --accent-hover: #ff7a4a;
   --on-accent: #111a22;
 
@@ -18,7 +18,11 @@
   --contrast-soft: #c6ced3;
   --contrast-muted: #aab4bb;
   --contrast-line: #3a4853;
-  --image-bg: #f8f9f6;
+  --image-bg: #ffffff;
+  --shape-soft: #ebe9e4;
+  --shadow: 0 1px 2px rgb(20 24 29 / 0.04), 0 14px 32px -16px rgb(20 24 29 / 0.14);
+  --radius: 16px;
+  --radius-sm: 10px;
 
   color-scheme: light;
 
@@ -52,6 +56,8 @@
   --contrast-muted: #93a0aa;
   --contrast-line: #2c3945;
   --image-bg: #e9edea;
+  --shape-soft: #1b2630;
+  --shadow: 0 1px 2px rgb(0 0 0 / 0.3), 0 14px 32px -16px rgb(0 0 0 / 0.6);
 
   color-scheme: dark;
 }
@@ -140,6 +146,21 @@ a {
   top: 12px;
 }
 
+.icon {
+  flex: none;
+}
+
+/* Título con barra de acento encima */
+.bar-title::before {
+  content: '';
+  display: block;
+  width: 52px;
+  height: 4px;
+  margin-bottom: 18px;
+  border-radius: 2px;
+  background: var(--accent);
+}
+
 /* ── Botones ─────────────────────────────────────────── */
 
 .btn {
@@ -149,13 +170,11 @@ a {
   min-height: 48px;
   padding: 0 22px;
   border: 1.5px solid var(--ink);
+  border-radius: var(--radius-sm);
   background: transparent;
   color: var(--ink);
-  font-family: var(--font-mono);
-  font-size: 0.8125rem;
-  font-weight: 500;
-  letter-spacing: 0.06em;
-  text-transform: uppercase;
+  font-size: 0.9375rem;
+  font-weight: 650;
   text-decoration: none;
   white-space: nowrap;
   cursor: pointer;
@@ -181,12 +200,13 @@ a {
 .btn-small {
   min-height: 44px;
   padding: 0 16px;
-  font-size: 0.75rem;
+  font-size: 0.875rem;
 }
 
 .actions {
   display: flex;
   flex-wrap: wrap;
+  align-items: center;
   gap: 12px;
 }
 
@@ -209,10 +229,9 @@ a {
 }
 
 .brand {
-  font-family: var(--font-mono);
-  font-weight: 500;
-  font-size: 1rem;
-  letter-spacing: 0.1em;
+  font-weight: 800;
+  font-size: 1.25rem;
+  letter-spacing: 0.02em;
   text-decoration: none;
   padding: 10px 0;
 }
@@ -223,15 +242,15 @@ a {
 
 .nav {
   display: flex;
-  gap: var(--space-3);
-  margin-left: auto;
+  gap: var(--space-4);
+  margin-inline: auto;
 }
 
 .nav a {
   padding: 12px 0;
   font-size: 0.9375rem;
   text-decoration: none;
-  color: var(--ink-soft);
+  color: var(--ink);
   transition: color 200ms ease;
 }
 
@@ -250,7 +269,8 @@ a {
   flex: none;
   padding: 0;
   border: 1.5px solid var(--line);
-  background: transparent;
+  border-radius: var(--radius-sm);
+  background: var(--sheet);
   color: var(--ink);
   cursor: pointer;
   transition: border-color 200ms ease, color 200ms ease;
@@ -266,13 +286,12 @@ a {
   min-height: 44px;
   padding: 0 14px;
   border: 1.5px solid var(--ink);
+  border-radius: var(--radius-sm);
   background: var(--ink);
   color: var(--sheet);
-  font-family: var(--font-mono);
-  font-size: 0.75rem;
-  font-weight: 500;
-  letter-spacing: 0.06em;
-  text-transform: uppercase;
+  font-family: inherit;
+  font-size: 0.875rem;
+  font-weight: 650;
   cursor: pointer;
 }
 
@@ -285,64 +304,141 @@ a {
 
 .hero-grid {
   display: grid;
-  grid-template-columns: minmax(0, 1.1fr) minmax(0, 0.9fr);
-  gap: var(--space-8);
+  grid-template-columns: minmax(0, 1.1fr) minmax(0, 1fr) 190px;
+  gap: var(--space-4);
   align-items: center;
+}
+
+.hero-place {
+  display: flex;
+  align-items: center;
+  gap: 8px;
 }
 
 .hero h1 {
   margin-top: var(--space-2);
-  font-size: clamp(2.5rem, 1.4rem + 4.4vw, 4.5rem);
+  font-size: clamp(2.5rem, 1.3rem + 3.6vw, 4.25rem);
   font-weight: 800;
-  font-stretch: 112%;
-  line-height: 0.98;
-  letter-spacing: -0.02em;
+  line-height: 1;
+  letter-spacing: -0.03em;
   text-wrap: balance;
 }
 
 .hero-role {
   display: block;
-  margin-top: 14px;
+  margin-top: 18px;
   font-size: clamp(1.25rem, 1rem + 1.2vw, 1.875rem);
-  font-weight: 700;
-  font-stretch: 112%;
+  font-weight: 800;
   line-height: 1.1;
   letter-spacing: 0.01em;
   text-transform: uppercase;
-  color: var(--accent-text);
+  color: var(--accent);
 }
 
 .hero-lead {
   margin-top: var(--space-3);
-  max-width: 34ch;
-  font-size: clamp(1.25rem, 1.1rem + 0.7vw, 1.5rem);
-  font-weight: 500;
-  line-height: 1.3;
+  max-width: 36ch;
+  padding-left: 24px;
+  border-left: 3px solid var(--accent);
+  font-size: clamp(1.125rem, 1rem + 0.5vw, 1.3125rem);
+  line-height: 1.35;
   text-wrap: pretty;
-}
-
-.hero-text {
-  margin-top: var(--space-2);
-  max-width: 56ch;
-  color: var(--ink-soft);
 }
 
 .hero .actions {
   margin-top: var(--space-4);
 }
 
-/* Cajetín, como el de un plano */
+.socials {
+  display: flex;
+  margin-left: var(--space-2);
+}
+
+.socials a {
+  display: grid;
+  place-items: center;
+  width: 44px;
+  height: 44px;
+  border-radius: var(--radius-sm);
+  transition: color 200ms ease, background-color 200ms ease;
+}
+
+.socials a:hover {
+  background: var(--sheet);
+  color: var(--accent-text);
+}
+
+/* ── Robot 3D ────────────────────────────────────────── */
+
+.robot-stage {
+  position: relative;
+  width: 100%;
+  max-width: 460px;
+  justify-self: center;
+  isolation: isolate;
+}
+
+/* Dos planos inclinados detrás del robot: uno neutro y uno de acento que se desvanece */
+.robot-stage::before,
+.robot-stage::after {
+  content: '';
+  position: absolute;
+  z-index: -1;
+  border-radius: 56px;
+  transform: skewX(-24deg);
+}
+
+.robot-stage::before {
+  inset: 16% 30% 14% -4%;
+  background: linear-gradient(200deg, var(--shape-soft), transparent 80%);
+}
+
+.robot-stage::after {
+  inset: 2% 4% 12% 28%;
+  background: linear-gradient(
+    205deg,
+    var(--accent) 0%,
+    color-mix(in srgb, var(--accent) 55%, transparent) 45%,
+    transparent 82%
+  );
+}
+
+.robot {
+  width: 100%;
+  aspect-ratio: 1;
+}
+
+.focus li {
+  display: flex;
+  align-items: center;
+  gap: 16px;
+  padding: 20px 0;
+  border-bottom: 1px solid var(--line);
+  font-size: 0.9375rem;
+  font-weight: 500;
+  line-height: 1.3;
+}
+
+.focus li:last-child {
+  border-bottom: 0;
+}
+
+/* Ficha de datos bajo la portada */
 .title-block {
   display: grid;
-  grid-template-columns: repeat(4, minmax(0, 1fr));
-  margin-top: var(--space-8);
-  border: 1.5px solid var(--ink);
+  grid-template-columns: 1.3fr 1fr 1.1fr 1fr;
+  margin-top: var(--space-6);
+  padding: 12px 0;
+  border: 1px solid var(--line);
+  border-radius: var(--radius);
   background: var(--sheet);
+  box-shadow: var(--shadow);
 }
 
 .title-block > div {
-  padding: 14px 18px 16px;
-  border-right: 1px solid var(--ink);
+  position: relative;
+  padding: 14px 24px 14px 76px;
+  border-right: 1px solid var(--line);
 }
 
 .title-block > div:last-child {
@@ -358,19 +454,18 @@ a {
   color: var(--ink-soft);
 }
 
-.title-block dd {
-  margin-top: 4px;
-  font-weight: 600;
-  line-height: 1.3;
+.title-block .icon {
+  position: absolute;
+  left: 28px;
+  top: 16px;
+  color: var(--accent);
 }
 
-/* ── Robot 3D ────────────────────────────────────────── */
-
-.robot {
-  width: 100%;
-  max-width: 480px;
-  aspect-ratio: 1;
-  justify-self: center;
+.title-block dd {
+  margin-top: 6px;
+  font-size: 0.9375rem;
+  font-weight: 650;
+  line-height: 1.35;
 }
 
 /* ── Secciones ───────────────────────────────────────── */
@@ -381,38 +476,99 @@ a {
 }
 
 .section-head {
-  display: grid;
-  grid-template-columns: 72px minmax(0, 1fr);
-  align-items: baseline;
   margin-bottom: var(--space-6);
 }
 
-.section-head .label {
-  color: var(--accent-text);
-}
-
 .section-head h2,
+.about h2,
 .contact h2 {
   font-size: clamp(1.75rem, 1.4rem + 1.6vw, 2.5rem);
-  font-weight: 750;
-  font-stretch: 108%;
+  font-weight: 800;
   line-height: 1.1;
-  letter-spacing: -0.015em;
+  letter-spacing: -0.02em;
   text-wrap: balance;
 }
 
 .section-head p {
-  grid-column: 2;
   margin-top: 12px;
   max-width: 62ch;
   color: var(--ink-soft);
+}
+
+/* Sobre mí y Qué hago */
+.about {
+  display: grid;
+  grid-template-columns: minmax(0, 4fr) minmax(0, 7fr);
+  gap: var(--space-8);
+}
+
+.about-text {
+  padding-right: var(--space-8);
+  border-right: 1px solid var(--line);
+}
+
+.about-text p {
+  margin-top: var(--space-2);
+  max-width: 44ch;
+}
+
+.about-text h2 + p {
+  margin-top: var(--space-3);
+}
+
+.more {
+  display: inline-flex;
+  align-items: center;
+  gap: 10px;
+  min-height: 44px;
+  margin-top: var(--space-2);
+  font-weight: 650;
+  color: var(--accent-text);
+}
+
+.services {
+  display: grid;
+  grid-template-columns: repeat(4, minmax(0, 1fr));
+  gap: var(--space-3);
+  margin-top: var(--space-4);
+}
+
+.services li {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 18px;
+  padding: 28px 16px;
+  border: 1px solid var(--line);
+  border-radius: var(--radius);
+  background: var(--sheet);
+  box-shadow: var(--shadow);
+  font-weight: 600;
+  line-height: 1.3;
+  text-align: center;
+  text-wrap: balance;
+}
+
+.services .icon {
+  color: var(--accent);
+}
+
+.capabilities {
+  margin-top: var(--space-8);
+}
+
+.capabilities h3 {
+  margin-bottom: var(--space-3);
+  font-size: 1.375rem;
+  font-weight: 800;
+  letter-spacing: -0.01em;
 }
 
 /* Capacidades */
 .skills {
   display: grid;
   grid-template-columns: repeat(4, minmax(0, 1fr));
-  border-top: 1.5px solid var(--ink);
+  border-top: 1px solid var(--line);
 }
 
 .skill {
@@ -429,7 +585,7 @@ a {
   padding-right: 0;
 }
 
-.skill h3 {
+.skill h4 {
   font-size: 1.0625rem;
   font-weight: 700;
   line-height: 1.25;
@@ -455,7 +611,7 @@ a {
   border-top: 1px solid var(--line);
 }
 
-.principles h3 {
+.principles h4 {
   font-size: 1.125rem;
   font-weight: 700;
   line-height: 1.25;
@@ -472,7 +628,7 @@ a {
   grid-template-columns: 220px minmax(0, 1fr) 280px;
   gap: var(--space-6);
   padding: var(--space-4) 0 var(--space-6);
-  border-top: 1.5px solid var(--ink);
+  border-top: 1px solid var(--line);
 }
 
 .job:last-child {
@@ -569,7 +725,7 @@ a {
   gap: var(--space-8);
   align-items: start;
   padding: var(--space-4) 0 var(--space-8);
-  border-top: 1.5px solid var(--ink);
+  border-top: 1px solid var(--line);
 }
 
 .project:last-child {
@@ -584,8 +740,7 @@ a {
 .project h3 {
   margin-top: 8px;
   font-size: clamp(1.625rem, 1.3rem + 1.2vw, 2.125rem);
-  font-weight: 750;
-  font-stretch: 108%;
+  font-weight: 800;
   line-height: 1.1;
   letter-spacing: -0.01em;
 }
@@ -630,8 +785,9 @@ a {
 }
 
 .tags li {
-  padding: 4px 10px;
+  padding: 4px 12px;
   border: 1px solid var(--line);
+  border-radius: 999px;
   background: var(--sheet);
   font-family: var(--font-mono);
   font-size: 0.8125rem;
@@ -657,7 +813,9 @@ a {
   position: relative;
   aspect-ratio: 4 / 3;
   border: 1px solid var(--line);
+  border-radius: var(--radius);
   background: var(--image-bg);
+  box-shadow: var(--shadow);
   overflow: hidden;
 }
 
@@ -681,7 +839,9 @@ a {
   height: 48px;
   padding: 0;
   border: 1px solid var(--line);
+  border-radius: 8px;
   background: var(--image-bg);
+  overflow: hidden;
   cursor: pointer;
   opacity: 0.6;
   transition: opacity 200ms ease, border-color 200ms ease;
@@ -704,7 +864,7 @@ a {
 
 /* Formación */
 .education {
-  border-top: 1.5px solid var(--ink);
+  border-top: 1px solid var(--line);
 }
 
 .education li {
@@ -842,9 +1002,29 @@ a {
     gap: var(--space-6);
   }
 
-  .robot {
-    max-width: 320px;
-    justify-self: start;
+  .robot-stage {
+    max-width: 340px;
+  }
+
+  .focus {
+    display: grid;
+    grid-template-columns: repeat(4, minmax(0, 1fr));
+    gap: var(--space-2);
+  }
+
+  .focus li {
+    padding: 0;
+    border-bottom: 0;
+  }
+
+  .about {
+    grid-template-columns: minmax(0, 1fr);
+    gap: var(--space-6);
+  }
+
+  .about-text {
+    padding-right: 0;
+    border-right: 0;
   }
 
   .title-block,
@@ -857,7 +1037,7 @@ a {
   }
 
   .title-block > div:nth-child(-n + 2) {
-    border-bottom: 1px solid var(--ink);
+    border-bottom: 1px solid var(--line);
   }
 
   .skill,
@@ -918,8 +1098,10 @@ a {
     flex-direction: column;
     gap: 0;
     padding: 8px 20px 16px;
+    margin: 0;
     background: var(--paper);
-    border-bottom: 1.5px solid var(--ink);
+    border-bottom: 1px solid var(--line);
+    box-shadow: var(--shadow);
   }
 
   .nav.is-open {
@@ -941,14 +1123,20 @@ a {
   }
 
   .section-head {
-    grid-template-columns: minmax(0, 1fr);
-    gap: 8px;
     margin-bottom: var(--space-4);
   }
 
-  .section-head p {
-    grid-column: 1;
-    margin-top: 4px;
+  .focus,
+  .services {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+  }
+
+  .focus {
+    gap: var(--space-3) var(--space-2);
+  }
+
+  .socials {
+    margin-left: 0;
   }
 
   .principles {
@@ -986,7 +1174,7 @@ a {
 
   .title-block > div {
     border-right: 0;
-    border-bottom: 1px solid var(--ink);
+    border-bottom: 1px solid var(--line);
   }
 
   .title-block > div:last-child {

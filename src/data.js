@@ -12,7 +12,7 @@ export const contact = {
 }
 
 export const navLinks = [
-  { href: '#capacidades', label: 'Capacidades' },
+  { href: '#sobre-mi', label: 'Sobre mí' },
   { href: '#experiencia', label: 'Experiencia' },
   { href: '#proyectos', label: 'Proyectos' },
   { href: '#formacion', label: 'Formación' },
@@ -20,10 +20,30 @@ export const navLinks = [
 ]
 
 export const titleBlock = [
-  { label: 'Título profesional', value: 'Ingeniero Mecatrónico · Universidad Autónoma del Caribe' },
-  { label: 'Especialidad', value: 'Automatización · IA aplicada · Software' },
-  { label: 'Propiedad intelectual', value: '3 obras de software registradas (DNDA)' },
-  { label: 'Idiomas', value: 'Español nativo · Inglés B2' },
+  { icon: 'graduation', label: 'Título profesional', value: 'Ingeniero Mecatrónico · Universidad Autónoma del Caribe' },
+  { icon: 'bolt', label: 'Especialidad', value: 'Automatización · IA aplicada · Software' },
+  { icon: 'layers', label: 'Propiedad intelectual', value: '3 obras de software registradas (DNDA)' },
+  { icon: 'globe', label: 'Idiomas', value: 'Español nativo · Inglés B2' },
+]
+
+// Lista junto al robot, en la portada
+export const focus = [
+  { icon: 'gear', label: 'Automatización industrial' },
+  { icon: 'chip', label: 'IA aplicada' },
+  { icon: 'code', label: 'Software industrial' },
+  { icon: 'layers', label: 'Integración de datos' },
+]
+
+export const about = [
+  'Ingeniero Mecatrónico con experiencia en automatización, mantenimiento y desarrollo de soluciones tecnológicas para la industria.',
+  'Me enfoco en integrar hardware, software y datos para mejorar la confiabilidad, la eficiencia y la productividad en planta.',
+]
+
+export const services = [
+  { icon: 'gear', label: 'Automatización de procesos' },
+  { icon: 'chart', label: 'Optimización de la operación' },
+  { icon: 'wrench', label: 'Mantenimiento y confiabilidad' },
+  { icon: 'laptop', label: 'Desarrollo de herramientas' },
 ]
 
 export const principles = [
