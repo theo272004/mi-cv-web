@@ -1,7 +1,7 @@
-import React, { useRef, Suspense, useEffect, useState } from 'react'
+import React, { useRef, Suspense, useEffect, useMemo, useState } from 'react'
 import * as THREE from 'three'
 import { Canvas, useFrame } from '@react-three/fiber'
-import { useGLTF, Center, Bounds } from '@react-three/drei'
+import { useGLTF, Center, ContactShadows, Environment, Lightformer } from '@react-three/drei'
 
 // Prevent crashes if the model fails by wrapping in a class boundary
 class ErrorBoundary extends React.Component {
@@ -29,7 +29,7 @@ export function RobotModel({ url }) {
   const lastMouseMoveTime = useRef(0)
   const blinkState = useRef({ timer: 0, nextBlink: 3 })
   const eyesRef = useRef({ e1: null, e2: null })
-  const accentGreen = '#00ff88'
+  const accentGreen = '#e5491b'
 
   useEffect(() => {
     lastMouseMoveTime.current = performance.now()
@@ -41,6 +41,51 @@ export function RobotModel({ url }) {
     window.addEventListener('mousemove', handleMouseMove)
     return () => window.removeEventListener('mousemove', handleMouseMove)
   }, [])
+
+  // Tamaño normalizado: el modelo siempre mide lo mismo, así luces y sombra quedan en su sitio
+  const fit = useMemo(() => {
+    const size = new THREE.Box3().setFromObject(scene).getSize(new THREE.Vector3())
+    const scale = 2.6 / Math.max(size.x, size.y, size.z)
+    return { scale, height: size.y * scale }
+  }, [scene])
+
+  // Sombras propias y materiales con más respuesta a la luz
+  useEffect(() => {
+    scene.traverse((child) => {
+      if (!child.isMesh) return
+      child.castShadow = true
+      child.receiveShadow = true
+      const materials = Array.isArray(child.material) ? child.material : [child.material]
+      materials.forEach((material) => {
+        if (!material) return
+        if (material.name === 'Black plastic') {
+          // Visor: acabado pulido para que recoja reflejos
+          material.roughness = 0.3
+          material.envMapIntensity = 1.5
+          if ('clearcoat' in material) {
+            material.clearcoat = 1
+            material.clearcoatRoughness = 0.1
+          }
+        } else if (material.name === 'White leather') {
+          // Carcasa: blanco limpio tipo cerámica, con una capa de barniz que marca las curvas
+          material.color.set('#ffffff')
+          material.roughness = 0.55
+          material.metalness = 0
+          material.envMapIntensity = 0.9
+          if ('clearcoat' in material) {
+            material.clearcoat = 0.5
+            material.clearcoatRoughness = 0.22
+          }
+          if ('sheen' in material) {
+            material.sheen = 0
+            material.sheenRoughness = 0.5
+            material.sheenColor.set('#eaf2ff')
+          }
+        }
+        material.needsUpdate = true
+      })
+    })
+  }, [scene])
 
   // Buscar los ojitos de manera infalible en todo el árbol 3D, priorizando Meshes
   useEffect(() => {
@@ -63,7 +108,7 @@ export function RobotModel({ url }) {
             e1.material = e1.material.clone()
             e1.material.color = new THREE.Color(accentGreen)
             e1.material.emissive = new THREE.Color(accentGreen)
-            e1.material.emissiveIntensity = 1.8
+            e1.material.emissiveIntensity = 1.05
             e1.material.needsUpdate = true
           }
         }
@@ -80,7 +125,7 @@ export function RobotModel({ url }) {
             e2.material = e2.material.clone()
             e2.material.color = new THREE.Color(accentGreen)
             e2.material.emissive = new THREE.Color(accentGreen)
-            e2.material.emissiveIntensity = 1.8
+            e2.material.emissiveIntensity = 1.05
             e2.material.needsUpdate = true
           }
         }
@@ -153,11 +198,24 @@ export function RobotModel({ url }) {
 
   // Clone the scene and center it
   return (
-    <group ref={robotRef} rotation={[0, Math.PI, 0]}>
-      <Center>
-        <primitive object={scene} />
-      </Center>
-    </group>
+    <>
+      <group ref={robotRef} rotation={[0, Math.PI, 0]}>
+        <group scale={fit.scale}>
+          <Center>
+            <primitive object={scene} />
+          </Center>
+        </group>
+      </group>
+      <ContactShadows
+        position={[0, -fit.height / 2 - 0.42, 0]}
+        scale={5.5}
+        blur={2.6}
+        far={2.4}
+        opacity={0.42}
+        resolution={512}
+        color="#0b1218"
+      />
+    </>
   )
 }
 
@@ -179,12 +237,12 @@ function RobotLoader() {
     }}>
       <div style={{
         width: 36, height: 36,
-        border: '2px solid #1f1f28',
-        borderTop: '2px solid #00ff88',
+        border: '2px solid #c9cfcc',
+        borderTop: '2px solid #e5491b',
         borderRadius: '50%',
         animation: 'spin 0.8s linear infinite',
       }} />
-      <span style={{ color: '#00ff88', fontSize: '11px', letterSpacing: '0.1em', fontFamily: 'monospace' }}>
+      <span style={{ color: '#e5491b', fontSize: '11px', letterSpacing: '0.1em', fontFamily: 'monospace' }}>
         cargando{dots}
       </span>
       <style>{`@keyframes spin { to { transform: rotate(360deg); } }`}</style>
@@ -193,23 +251,70 @@ function RobotLoader() {
 }
 
 export default function RobotCanvas() {
+  const wrapRef = useRef(null)
+  const [onScreen, setOnScreen] = useState(true)
+
+  useEffect(() => {
+    if (!wrapRef.current) return undefined
+    const observer = new IntersectionObserver(([entry]) => setOnScreen(entry.isIntersecting))
+    observer.observe(wrapRef.current)
+    return () => observer.disconnect()
+  }, [])
+
   return (
     <ErrorBoundary>
-      <div style={{ position: 'relative', width: '100%', height: '100%' }}>
+      <div ref={wrapRef} style={{ position: 'relative', width: '100%', height: '100%' }}>
         <Suspense fallback={<RobotLoader />}>
           <Canvas
-            dpr={[1, 1.5]}
-            camera={{ position: [0, 0, 5], fov: 50 }}
+            shadows
+            frameloop={onScreen ? 'always' : 'never'}
+            dpr={[1, 1.75]}
+            camera={{ position: [0, 0.15, 5.4], fov: 40 }}
             style={{ width: '100%', height: '100%', pointerEvents: 'none', background: 'transparent' }}
-            gl={{ alpha: true, preserveDrawingBuffer: false, antialias: true, powerPreference: 'high-performance' }}
+            gl={{
+              alpha: true,
+              preserveDrawingBuffer: false,
+              antialias: true,
+              powerPreference: 'high-performance',
+              toneMapping: THREE.NeutralToneMapping,
+              toneMappingExposure: 1,
+            }}
             performance={{ min: 0.5 }}
           >
-            <ambientLight intensity={2.5} />
-            <directionalLight position={[10, 10, 5]} intensity={2} />
+            {/* Luz de cielo y suelo: las sombras quedan azuladas y limpias, no grises */}
+            <hemisphereLight args={['#ffffff', '#7f8fa3', 0.38]} />
+            {/* Luz principal, con sombras propias (orejas y visor sobre el cuerpo) */}
+            <directionalLight
+              position={[-3.2, 5.5, 5]}
+              intensity={2.4}
+              castShadow
+              shadow-mapSize={[2048, 2048]}
+              shadow-radius={6}
+              shadow-bias={-0.0004}
+              shadow-normalBias={0.03}
+              shadow-camera-left={-3}
+              shadow-camera-right={3}
+              shadow-camera-top={3}
+              shadow-camera-bottom={-3}
+              shadow-camera-near={0.5}
+              shadow-camera-far={16}
+            />
+            {/* Relleno frontal suave para que el lado en sombra siga leyéndose blanco */}
+            <directionalLight position={[4.5, 1.5, 4]} intensity={0.5} color="#e6efff" />
+            {/* Contraluces: recortan la silueta por ambos lados */}
+            <directionalLight position={[3, 3, -5]} intensity={2.2} color="#ffc4a8" />
+            <directionalLight position={[-3.5, -1, -4]} intensity={1.2} color="#a9c8ff" />
+            {/* Entorno generado en el navegador: paneles de luz que dibujan los reflejos sobre las curvas */}
+            <Environment resolution={256} environmentIntensity={0.75}>
+              <color attach="background" args={['#2f3740']} />
+              <Lightformer form="rect" intensity={4} position={[0, 5, 1]} scale={[8, 3, 1]} target={[0, 0, 0]} />
+              <Lightformer form="rect" intensity={2.4} position={[-5, 1.5, 3]} scale={[1.2, 6, 1]} target={[0, 0, 0]} />
+              <Lightformer form="rect" intensity={1.6} position={[5, 1, 2]} scale={[1.2, 5, 1]} target={[0, 0, 0]} color="#ffe3d4" />
+              <Lightformer form="ring" intensity={2.4} position={[-2, 2.5, 5]} scale={1.4} target={[0, 0, 0]} />
+              <Lightformer form="rect" intensity={0.5} position={[0, -5, 0]} scale={[10, 10, 1]} target={[0, 0, 0]} color="#5d6c7e" />
+            </Environment>
             <Suspense fallback={null}>
-              <Bounds fit clip margin={1.15}>
-                <RobotModel url={MODEL_PATH} />
-              </Bounds>
+              <RobotModel url={MODEL_PATH} />
             </Suspense>
           </Canvas>
         </Suspense>

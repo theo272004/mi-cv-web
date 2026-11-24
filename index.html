@@ -3,22 +3,58 @@
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Mateo Castro Villegas | Ingeniero Mecatrónico</title>
     <meta
       name="description"
-      content="Portafolio profesional de Mateo David Castro Villegas: ingeniería mecatrónica, automatización industrial, IA aplicada, integración de sistemas y software registrado."
+      content="Ingeniero Mecatrónico en Barranquilla, Colombia: automatización industrial con PLC y HMI, visión artificial, IA aplicada y software. Tres obras de software registradas."
     />
-    <meta name="theme-color" content="#060608" />
-    <meta property="og:title" content="Mateo Castro Villegas | Automatización, IA y software" />
+    <meta name="theme-color" content="#eef0ed" />
+    <link rel="canonical" href="https://theo272004.github.io/mi-cv-web/" />
+    <link rel="icon" type="image/svg+xml" href="/mi-cv-web/favicon.svg" />
+    <meta property="og:title" content="Mateo Castro Villegas | Ingeniero Mecatrónico" />
     <meta
       property="og:description"
-      content="Ingeniero mecatrónico enfocado en soluciones end-to-end para operación real: PLC, HMI, visión artificial, agentes IA, datos y desarrollo."
+      content="Ingeniero mecatrónico que conecta PLC, HMI, visión artificial, agentes de IA y datos para resolver operación real."
     />
     <meta property="og:type" content="website" />
+    <meta property="og:locale" content="es_CO" />
     <meta property="og:url" content="https://theo272004.github.io/mi-cv-web/" />
-    <title>Mateo Castro Villegas | Automatización, IA y software</title>
+    <script>
+      try {
+        var saved = localStorage.getItem('theme')
+        var dark = saved ? saved === 'dark' : window.matchMedia('(prefers-color-scheme: dark)').matches
+        document.documentElement.dataset.theme = dark ? 'dark' : 'light'
+      } catch (e) {
+        document.documentElement.dataset.theme = 'light'
+      }
+    </script>
+    <script type="application/ld+json">
+      {
+        "@context": "https://schema.org",
+        "@type": "Person",
+        "name": "Mateo David Castro Villegas",
+        "jobTitle": "Ingeniero Mecatrónico",
+        "worksFor": [
+          { "@type": "Organization", "name": "Farmacápsulas" },
+          { "@type": "Organization", "name": "Kaiva Studio", "url": "https://kaivastudio.com" }
+        ],
+        "url": "https://theo272004.github.io/mi-cv-web/",
+        "address": { "@type": "PostalAddress", "addressLocality": "Barranquilla", "addressCountry": "CO" },
+        "alumniOf": { "@type": "CollegeOrUniversity", "name": "Universidad Autónoma del Caribe" },
+        "knowsAbout": ["Automatización industrial", "PLC", "HMI", "Visión artificial", "Agentes de IA", "Python"],
+        "sameAs": [
+          "https://github.com/theo272004",
+          "https://www.linkedin.com/in/mateo-castro-villegas-84b738340"
+        ]
+      }
+    </script>
   </head>
   <body>
     <div id="root"></div>
+    <noscript>
+      Mateo Castro Villegas · Ingeniero mecatrónico · Barranquilla, Colombia. Activa JavaScript para ver el
+      portafolio completo o escribe a mateodcvnew@gmail.com.
+    </noscript>
     <script type="module" src="/src/main.jsx"></script>
   </body>
 </html>
